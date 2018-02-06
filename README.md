@@ -2,18 +2,18 @@
 
 Alula is a static, weakly typed programming languages that focuses on parallelism and simplicity through the standardized use of the colon.
 
-#### Examples
-Hello World
-```
-print: "Hello World"
-```
+
 ### Features
 * All variable declarations, function calls, and and conditional statements require a colon to designate the beginning
 * Any arguments are separated with a comma directly after the colon
 * Chained functions are separated by ->, designated another "step"
 * Parenthesis are exclusively used for logic and arithmetic precedence
 
-
+### Examples
+Hello World
+```
+print: "Hello World"
+```
 
 ##### Fibonacci Sequence
 Iteratively finds fibonacci number at the nth index value
@@ -50,6 +50,6 @@ function closure: x, y {
   }
 }
 
-closureVariable: closure: 3, 2
+closureVariable: closure: 3, 2    
 closureVariable -> next
 ```
