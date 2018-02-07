@@ -1,3 +1,5 @@
+# alulu
+
 ![alula logo](Alula.png)
 
 Welcome to Alula, the language that does away with the semicolon, but embraces the colon. Alula is a static, weakly typed programming languages that focuses on parallelism and simplicity through the standardized use of the colon. Alula takes inspiration from Python, with hints of Elm.
