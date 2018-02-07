@@ -1,0 +1,15 @@
+{
+  "name": "alulu",
+  "version": "0.0.0",
+  "description": "The language that does away with the semicolon",
+  "dependencies": {
+    "async": "^0.9.0",
+    "byline": "^4.2.1",
+    "hashmap": "^2.0.3",
+    "string-format": "^0.5.0",
+    "yargs": "^3.0.4"
+  },
+  "devDependencies": {
+    "mocha": "^2.1.0"
+  }
+}
