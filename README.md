@@ -57,6 +57,17 @@ function average: list {
 }
 ```
 
+##### Check Odd / Even
+Returns odd or even based on the input
+```
+function oddOrEven: number {
+  if: number % 2 == 0 {
+    return: 'even'
+  } else:
+    return: 'odd'
+}
+```
+
 ##### Closure
 A basic closure that finds the previous x value and multiplies it by y
 ```
