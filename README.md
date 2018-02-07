@@ -74,7 +74,7 @@ A basic closure that finds the previous x value and multiplies it by y
 function closure: x, y {
   currentX: x
   return: function next: {
-    currentX: x * y
+    currentX: currentX * y
     return: currentX
   }
 }
