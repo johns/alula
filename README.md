@@ -38,7 +38,7 @@ Iteratively finds fibonacci number at the nth index value
 ```
 function fibonacci: position {
   num result: 1
-  for: i: 1, i < (position -> length), i++ {
+  for: num i: 1, i < (position -> length), i++ {
     result +: result
   }
   return: result
