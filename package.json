@@ -2,14 +2,24 @@
   "name": "alula",
   "version": "0.0.1",
   "description": "The language that does away with the semicolon",
+  "main": "alula.lul",
   "dependencies": {
     "async": "^0.9.0",
     "byline": "^4.2.1",
-    "hashmap": "^2.0.3",
-    "string-format": "^0.5.0",
-    "yargs": "^3.0.4"
+    "yargs": "^10.1.1"
   },
   "devDependencies": {
-    "mocha": "^2.1.0"
-  }
+    "mocha": "^5.0.0",
+    "eslint": "^4.16.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "jest": "^22.2.1",
+    "ohm-js": "^0.14.0"
+  },
+  "scripts": {
+    "test": "jest test/**/*test.js"
+  },
+  "jest": {
+    "transform": {}
+  },
 }
