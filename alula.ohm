@@ -3,10 +3,10 @@ alula {
   Block       =  (Stmt newline)*
 
   Stmt        =  SimpleStmt newline               -- simple
-              |  "while:" Exp Suite                -- while
+              |  "while:" Exp Suite               -- while
               |  "if:" Exp Suite
                  ("else if:" Exp Suite)*
-                 ("else:" Suite)?                  -- if
+                 ("else:" Suite)?                 -- if
               |  "function" id ":" Params "{" Suite "}" -- function
   SimpleStmt  =  Type Ids "=" Exps                -- vardecl
               |  VarExps "=" Exps                 -- assign
@@ -41,7 +41,7 @@ alula {
               |  Call
               |  VarExp
               |  "(" Exp ")"                      -- parens
-  Call        =  VarExp "(" Args ")"
+  Call        =  VarExp ":" Args
 
   Exps        =  NonemptyListOf<Exp, ",">
   Ids         =  NonemptyListOf<id, ",">
@@ -72,4 +72,5 @@ alula {
   newline     =  "\n"+
   space      :=  " " | "\t" | comment
   comment     =  "#" (~"\n" any)*
+              |  "#:" (any)* ":#"
 }
