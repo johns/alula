@@ -1,0 +1,75 @@
+alula {
+  Program     =  Block
+  Block       =  (Stmt newline)*
+
+  Stmt        =  SimpleStmt newline               -- simple
+              |  "while:" Exp Suite                -- while
+              |  "if:" Exp Suite
+                 ("else if:" Exp Suite)*
+                 ("else:" Suite)?                  -- if
+              |  "function" id ":" Params "{" Suite "}" -- function
+  SimpleStmt  =  Type Ids "=" Exps                -- vardecl
+              |  VarExps "=" Exps                 -- assign
+              |  Call                             -- call
+              |  "break"                          -- break
+              |  "return" Exp?                    -- return
+  Suite       =  ":" SimpleStmt newline           -- small
+              |  ":" newline indent Stmt+ dedent  -- large
+
+  Type        =  "string"                         -- string
+              |  "num"                            -- number
+              |  "bool"                           -- boolean
+              |  "list" "[" Type "]"              -- list (Type Bound)
+              |  "dict"                           -- dictionary
+              |  "struct"                         -- struct
+//              |  "undefined"                      -- undefined
+
+  Exp         =  Exp "or" Exp1                    -- or
+              |  Exp "and" Exp1                   -- and
+              |  Exp1
+  Exp1        =  Exp2 relop Exp2                  -- binary
+              |  Exp2
+  Exp2        =  Exp2 addop Exp3                  -- binary
+              |  Exp3
+  Exp3        =  Exp3 mulop Exp4                  -- binary
+              |  Exp4
+  Exp4        =  prefixop Exp5                    -- unary
+              |  Exp5
+  Exp5        =  boollit
+              |  numlit
+              |  strlit
+              |  Call
+              |  VarExp
+              |  "(" Exp ")"                      -- parens
+  Call        =  VarExp "(" Args ")"
+
+  Exps        =  NonemptyListOf<Exp, ",">
+  Ids         =  NonemptyListOf<id, ",">
+  VarExp      =  VarExp "[" Exp "]"               -- subscripted
+              |  id                               -- simple
+  VarExps     =  NonemptyListOf<VarExp, ",">
+  Param       =  id (":" Exp)?
+  Params      =  ListOf<Param, ",">
+  Arg         =  (id ":")? Exp
+  Args        =  ListOf<Arg, ",">
+
+  keyword     =  ("while" | "if" | "else if" | "else" | "function" | "string"
+              | "num" | "bool" | "list" | "dict" | "struct" | "undefined" | "return"
+              |  "break" | "and" | "or" | "not" | "true" | "false") ~idrest
+  id          =  ~keyword ("_" | letter) idrest*
+  idrest      =  "_" | alnum
+  numlit      =  digit+ ("." digit+)? (("E" | "e") ("+" | "-")? digit+)?
+  boollit     =  "true" | "false"
+  strlit      = "\"" (~"\\" ~"\"" ~"\n" any | escape)* "\""
+  escape      = "\\" ("\\" | "\"" | "n")          -- simple
+              | "\\u{" hexDigit+ "}"              -- codepoint
+  addop       =  "+" | "-"
+  relop       =  "<=" | "<" | "==" | "!=" | ">=" | ">"
+  mulop       =  "*" | "/" | "%"
+  prefixop    =  "-" | "not"
+  indent      =  "⇨"
+  dedent      =  "⇦"
+  newline     =  "\n"+
+  space      :=  " " | "\t" | comment
+  comment     =  "#" (~"\n" any)*
+}
