@@ -1,4 +1,4 @@
-# alulu
+# alula
 
 ![alula logo](Alula.png)
 
