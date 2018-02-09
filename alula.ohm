@@ -8,8 +8,8 @@ alula {
                  ("else if:" Exp Suite)*
                  ("else:" Suite)?                 -- if
               |  "function" id ":" Params "{" Suite "}" -- function
-  SimpleStmt  =  Type Ids "=" Exps                -- vardecl
-              |  VarExps "=" Exps                 -- assign
+  SimpleStmt  =  Type Ids ":" Exps                -- vardecl
+              |  VarExps ":" Exps                 -- assign
               |  Call                             -- call
               |  "break"                          -- break
               |  "return" Exp?                    -- return
