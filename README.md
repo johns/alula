@@ -11,23 +11,26 @@ Welcome to Alula, the language that does away with the semicolon, but embraces t
 * Chained functions are separated by ->, designated another "step"
 * Parenthesis are exclusively used for logic and arithmetic precedence
 
-| Alula              | JavaScript         | Description   |
-| ------------------ |:------------------:| ---------------:|
-| name: value   | var name = value; | Variable Declarations|
+| Alula                     | JavaScript         | Description   |
+| ------------------------- |:----------------:| ---------:|
+| type name: value   | var name = value; | Variable Declarations|
 | if: params {...} | if (params) {...}           | if-statements |
 | while: params {...}| while(params) {...} | while-loop |
 | for: i:0, i < max, i++ {...} | for (var i = 0; i < max; i++) {...} | for-loop |
 | return: 0 | return 0; | return statement |
 | variable -> getValue: 12 -> getMax -> toString | variable.getValueAt(12).getMax().toString() | Chainable Functions
+| # single line comment | // single line comment | single line comment |
+| #: block comment :# | /\* block comment */ | multiple line comment |
 
-* The following types are checked at compile time.
-  * Number - num
-  * Boolean - bool
-  * String - string
-  * Struct - struct
-  * List - list
-  * Dictionary - dict
-  * Undefined - undefined
+
+* Alula contains 7 types. They are declared as followed
+  * num numberVariable: 2
+  * bool booleanVariable: false
+  * string stringVariable: "This is text."
+  * list listOfVariables<type>: ["List", "of", true, 5]
+  * dict dictionaryOfVariables: {John: "Scott", J: 4, Olive: true}
+  * struct aStructure: {...}
+  * undefined
 
 ### Examples
 Hello World
