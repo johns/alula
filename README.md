@@ -10,13 +10,15 @@ Welcome to Alula, the language that does away with the semicolon, but embraces t
 * Any arguments are separated with a comma directly after the colon
 * Chained functions are separated by ->, designated another "step"
 * Parenthesis are exclusively used for logic and arithmetic precedence
+* Parameters for functions occur after the colon, but before the curly brackets. Multiple parameters are separated with commas
 
 | Alula                     | JavaScript         | Description   |
 | ------------------------- |:----------------:| ---------:|
 | type name: value   | var name = value; | Variable Declarations|
-| if: params {...} | if (params) {...}           | if-statements |
-| while: params {...}| while(params) {...} | while-loop |
-| for: i:0, i < max, i++ {...} | for (var i = 0; i < max; i++) {...} | for-loop |
+| function funcName: arg1, arg2 {..} | function funcName(arg1, arg2) {..} | Function call |
+| if: conditional {...} | if (conditional) {...}           | if-statements |
+| while: conditional {...}| while(conditional) {...} | while-loop |
+| for: num i:0, i < max, i++ {...} | for (var i = 0; i < max; i++) {...} | for-loop |
 | return: 0 | return 0; | return statement |
 | variable -> getValue: 12 -> getMax -> toString | variable.getValueAt(12).getMax().toString() | Chainable Functions
 | # single line comment | // single line comment | single line comment |
@@ -41,8 +43,8 @@ print: "Hello World"
 ##### Fibonacci Sequence
 Iteratively finds fibonacci number at the nth index value
 ```
-function fibonacci: position {
-  result: 1
+function fibonacci: num position {
+  num result: 1
   for: i: 1, i < (position -> length), i++ {
     result +: result
   }
@@ -53,8 +55,8 @@ function fibonacci: position {
 ##### Average
 Finds the average of a list of numbers
 ```
-function average: list {
-  multipled: 1
+function average: num list {
+  num multipled: 1
   for: i:0, i < (list -> length), i++ {
     multiplied *: list[i]
   }
@@ -65,7 +67,7 @@ function average: list {
 ##### Check Odd / Even
 Returns odd or even based on the input
 ```
-function oddOrEven: number {
+function oddOrEven: num number {
   if: number % 2 == 0 {
     return: 'even'
   } else:
@@ -76,7 +78,7 @@ function oddOrEven: number {
 ##### Closure
 A basic closure that finds the previous x value and multiplies it by y
 ```
-function closure: x, y {
+function closure: num x, num y {
   currentX: x
   return: function next: {
     currentX: currentX * y
