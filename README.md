@@ -27,7 +27,7 @@ Welcome to Alula, the language that does away with the semicolon, but embraces t
   * num numberVariable: 2
   * bool booleanVariable: false
   * string stringVariable: "This is text."
-  * list listOfVariables<type>: ["List", "of", true, 5]
+  * list listOfVariables<type>: ["List", "of", "four", "variables"]
   * dict dictionaryOfVariables: {John: "Scott", J: 4, Olive: true}
   * struct aStructure: {...}
   * undefined
