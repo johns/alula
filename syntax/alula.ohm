@@ -19,7 +19,7 @@ alula {
   Type        =  "string"                         -- string
               |  "num"                            -- number
               |  "bool"                           -- boolean
-              |  "list" "[" Type "]"              -- list (Type Bound)
+              |  "list" "[" Type "]"              -- list
               |  "dict"                           -- dictionary
               |  "struct"                         -- struct
 //              |  "undefined"                      -- undefined
@@ -71,6 +71,6 @@ alula {
   dedent      =  "⇦"
   newline     =  "\n"+
   space      :=  " " | "\t" | comment
-  comment     =  "#" (~"\n" any)*
+  comment     =  "#" ~":" (~"\n" any)* "\n"
               |  "#:" (any)* ":#"
 }
