@@ -1,0 +1,4 @@
+num a: 123
+string str: "Hello World"
+
+print: a + str
