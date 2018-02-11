@@ -1,0 +1,3 @@
+function missing_brace :
+  y : 99
+}
