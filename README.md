@@ -20,7 +20,7 @@ Welcome to Alula, the language that does away with the semicolon, but embraces t
 | while: conditional {...}| while(conditional) {...} | while-loop |
 | for: num i:0, i < max, i++ {...} | for (var i = 0; i < max; i++) {...} | for-loop |
 | return: 0 | return 0; | return statement |
-| variable -> getValue: 12 -> getMax -> toString | variable.getValueAt(12).getMax().toString() | Chainable Functions
+| variable -> getValue: 12 -> getMax -> toString | variable.getValueAt(12).getMax().toString() | Chain-able Functions
 | # single line comment | // single line comment | single line comment |
 | #: block comment :# | /\* block comment */ | multiple line comment |
 
@@ -56,7 +56,7 @@ function fibonacci: num position {
 Finds the average of a list of numbers
 ```
 function average: num list {
-  num multipled: 1
+  num multiplied: 1
   for: i:0, i < (list -> length), i++ {
     multiplied *: list[i]
   }
