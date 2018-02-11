@@ -7,7 +7,7 @@ function fibonacci: num position {
 
 
   function average: num list {
-    num multipled: 1
+    num multiplied: 1
     for: i:0, i < (list -> length), i++ {
       multiplied *: list[i]
     }
@@ -16,7 +16,7 @@ function fibonacci: num position {
 
 
   function average: num list {
-    num multipled: 1
+    num multiplied: 1
     for: i:0, i < (list -> length), i++ {
       multiplied *: list[i]
     }
