@@ -55,7 +55,7 @@ alula {
 
   keyword     =  ("while" | "if" | "else if" | "else" | "function" | "string"
               | "num" | "bool" | "list" | "dict" | "struct" | "undefined" | "return"
-              |  "break" | "and" | "or" | "not" | "true" | "false") ~idrest
+              |  "break" | "and" | "or" | "not" | "true" | "false" | "for") ~idrest
   id          =  ~keyword ("_" | letter) idrest*
   idrest      =  "_" | alnum
   numlit      =  digit+ ("." digit+)? (("E" | "e") ("+" | "-")? digit+)?
