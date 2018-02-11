@@ -1,0 +1,44 @@
+function fibonacci: num position {
+  num result: 1
+  for: i: 1, i < (position -> length), i++ {
+    result +: result
+  }
+  return: result
+
+
+  function average: num list {
+    num multipled: 1
+    for: i:0, i < (list -> length), i++ {
+      multiplied *: list[i]
+    }
+    return multiplied / (list -> length)
+  }
+
+
+  function average: num list {
+    num multipled: 1
+    for: i:0, i < (list -> length), i++ {
+      multiplied *: list[i]
+    }
+    return multiplied / (list -> length)
+  }
+
+
+  function oddOrEven: num number {
+  if: number % 2 == 0 {
+    return: 'even'
+  } else:
+    return: 'odd'
+}
+
+
+function closure: num x, num y {
+  currentX: x
+  return: function next: {
+    currentX: currentX * y
+    return: currentX
+  }
+}
+
+closureVariable: closure: 3, 2
+closureVariable -> next
