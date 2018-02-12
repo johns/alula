@@ -1,0 +1,5 @@
+num x: 3
+num y: 4
+
+num return: x + y
+return: return

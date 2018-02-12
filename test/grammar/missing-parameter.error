@@ -1,0 +1,10 @@
+num x: 4
+num y: 6
+
+if: x < 3 {
+  return: y
+} else if: {
+  return: -1 * y
+} else: {
+  return 1
+}
