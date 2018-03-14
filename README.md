@@ -1,9 +1,10 @@
 # alula
 
-![alula logo](Alula.png)
+![alula logo](alula.png)
 
 Welcome to Alula, the language that does away with the semicolon, but embraces the colon. Alula is a static, strongly typed programming languages that focuses on parallelism and simplicity through the standardized use of the colon. Alula takes inspiration from Python, with hints of Elm.
 
+In many programming language, the equal sign has many contextual uses. For example, in JavaScript, a single equal sign (=) is used to declare, while a double or triple equal sign (==/===) is for comparing. The overuse of such a character can cause unnecessary confusion. In Alula, the equal sign is utilized, but only for the comparison of values. All declarations, statements, and function calls begin with a colon, allowing for an easier understanding for those unfamiliar with the language. In Layman's terms, anything that can be called to do something begins with a colon.
 
 ### Features
 * All variable declarations, function calls, and and conditional statements require a colon to designate the beginning
