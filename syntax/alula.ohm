@@ -1,8 +1,8 @@
 alula {
   Program     =  Block
-  Block       =  (Stmt newline)*
+  Block       =  (Stmt)*
 
-  Stmt        =  SimpleStmt newline               -- simple
+  Stmt        =  SimpleStmt                       -- simple
               |  "while:" Exp Suite               -- while
               |  "if:" Exp Suite
                  ("else if:" Exp Suite)*
@@ -13,8 +13,8 @@ alula {
               |  Call                             -- call
               |  "break"                          -- break
               |  "return" Exp?                    -- return
-  Suite       =  ":" SimpleStmt newline           -- small
-              |  ":" newline indent Stmt+ dedent  -- large
+  Suite       =  SimpleStmt           -- small
+              |  newline indent Stmt+ newline  -- large
 
   Type        =  "string"                         -- string
               |  "num"                            -- number
