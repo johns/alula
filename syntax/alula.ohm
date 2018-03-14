@@ -14,7 +14,7 @@ alula {
               |  "break"                          -- break
               |  "return" Exp?                    -- return
   Suite       =  SimpleStmt           -- small
-              |  newline indent Stmt+ newline  -- large
+              |  newline Stmt+ newline  -- large
 
   Type        =  "string"                         -- string
               |  "num"                            -- number
