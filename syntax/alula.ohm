@@ -12,9 +12,9 @@ alula {
               |  VarExps ":" Exps                 -- assign
               |  Call                             -- call
               |  "break"                          -- break
-              |  "return:" Exp?                    -- return
-  Suite       =  newline? SimpleStmt newline?          -- small
-              |  Stmt+ -- large
+              |  "return:" Exp?                   -- return
+  Suite       =  SimpleStmt                       -- small
+              |  Stmt+                            -- large
               |  newline
 
   Type        =  "string"                         -- string
