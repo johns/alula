@@ -1,11 +1,12 @@
-function f():
-       pass
+function f: {
+  break
+}
 
-def g():
-  if x < 1:
-       x = 3
-       print(x)
-  else:
-     return 'z'
-
-f()
+function g: {
+  if: x < 1 {
+    x: 3
+    print: x
+  } else: {
+    return: "z"
+  }
+}
