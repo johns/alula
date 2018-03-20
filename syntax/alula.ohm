@@ -12,7 +12,7 @@ alula {
               |  VarExps ":" Exps                 -- assign
               |  Call                             -- call
               |  "break"                          -- break
-              |  "return" Exp?                    -- return
+              |  "return:" Exp?                    -- return
   Suite       =  SimpleStmt           -- small
               |  newline Stmt+ newline  -- large
 
@@ -22,7 +22,7 @@ alula {
               |  "list" "[" Type "]"              -- list
               |  "dict"                           -- dictionary
               |  "struct"                         -- struct
-//              |  "undefined"                      -- undefined
+              |  "undefined"                      -- undefined
 
   Exp         =  Exp "or" Exp1                    -- or
               |  Exp "and" Exp1                   -- and
