@@ -7,14 +7,15 @@ alula {
               |  "if:" Exp Suite
                  ("else if:" Exp Suite)*
                  ("else:" Suite)?                 -- if
-              |  "function" id ":" Params "{" Suite "}" -- function
+              |  "function" id ":" Params "{" Suite+ "}" -- function
   SimpleStmt  =  Type Ids ":" Exps                -- vardecl
               |  VarExps ":" Exps                 -- assign
               |  Call                             -- call
               |  "break"                          -- break
               |  "return:" Exp?                    -- return
-  Suite       =  SimpleStmt           -- small
-              |  newline Stmt+ newline  -- large
+  Suite       =  newline? SimpleStmt newline?          -- small
+              |  Stmt+ -- large
+              |  newline
 
   Type        =  "string"                         -- string
               |  "num"                            -- number
@@ -48,7 +49,8 @@ alula {
   VarExp      =  VarExp "[" Exp "]"               -- subscripted
               |  id                               -- simple
   VarExps     =  NonemptyListOf<VarExp, ",">
-  Param       =  id (":" Exp)?
+  Param       =  id (":" Exp)? 					  -- exp
+  			  |  Type id 						  -- simple
   Params      =  ListOf<Param, ",">
   Arg         =  (id ":")? Exp
   Args        =  ListOf<Arg, ",">
@@ -67,8 +69,6 @@ alula {
   relop       =  "<=" | "<" | "==" | "!=" | ">=" | ">"
   mulop       =  "*" | "/" | "%"
   prefixop    =  "-" | "not"
-  indent      =  "⇨"
-  dedent      =  "⇦"
   newline     =  "\n"+
   space      :=  " " | "\t" | comment
   comment     =  "#" ~":" (~"\n" any)* "\n"
