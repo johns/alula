@@ -12,8 +12,6 @@
 
 const fs = require('fs');
 const ohm = require('ohm-js');
-const withIndentsAndDedents = require('./preparser');
-/*
 const Program = require('../ast/program');
 const VariableDeclaration = require('../ast/variable-declaration');
 const AssignmentStatement = require('../ast/assignment-statement');
@@ -33,18 +31,18 @@ const Parameter = require('../ast/parameter');
 const Argument = require('../ast/argument');
 const BooleanLiteral = require('../ast/boolean-literal');
 const NumericLiteral = require('../ast/numeric-literal');
-const StringLiteral = require('../ast/string-literal');*/
+const StringLiteral = require('../ast/string-literal');
 
 const grammar = ohm.grammar(fs.readFileSync('./syntax/alula.ohm'));
 
 // Ohm turns `x?` into either [x] or [], which we should clean up for our AST.
-/*
+
 function unpack(a) {
   return a.length === 0 ? null : a[0];
-}*/
+}
 
 /* eslint-disable no-unused-vars */
-/*
+
 const astGenerator = grammar.createSemantics().addOperation('ast', {
   Program(_1, body, _2) { return new Program(body.ast()); },
   Stmt_simple(statement, _) { return statement.ast(); },
@@ -84,7 +82,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   strlit(_1, chars, _6) { return new StringLiteral(this.sourceString); },
   id(_1, _2) { return this.sourceString; },
   _terminal() { return this.sourceString; },
-});*/
+});
 /* eslint-enable no-unused-vars */
 
 module.exports = (text) => {
