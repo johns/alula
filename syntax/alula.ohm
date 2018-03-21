@@ -19,7 +19,7 @@ alula {
               |  "num"                            -- number
               |  "bool"                           -- boolean
               |  "list" "[" Type "]"              -- list
-              |  "dict" "[" Type "," Type "]"        -- dictionary
+              |  "dict" "[" Type "," Type "]"     -- dictionary
               |  "struct"                         -- struct
               |  "undefined"                      -- undefined
 
