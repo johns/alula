@@ -4,6 +4,7 @@ function fibonacci: num position {
     result +: result
   }
   return: result
+}
 
 
   function average: num list {

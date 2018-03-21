@@ -7,21 +7,19 @@ alula {
               |  "if:" Exp Suite
                  ("else if:" Exp Suite)*
                  ("else:" Suite)?                 -- if
-              |  "function" id ":" Params "{" Suite+ "}" -- function
+              |  "function" id ":" Params Suite   -- function
   SimpleStmt  =  Type Ids ":" Exps                -- vardecl
               |  VarExps ":" Exps                 -- assign
               |  Call                             -- call
               |  "break"                          -- break
               |  "return:" Exp?                   -- return
-  Suite       =  SimpleStmt                       -- small
-              |  Stmt+                            -- large
-              |  newline
+  Suite       =  "{" Stmt "}"
 
   Type        =  "string"                         -- string
               |  "num"                            -- number
               |  "bool"                           -- boolean
               |  "list" "[" Type "]"              -- list
-              |  "dict"                           -- dictionary
+              |  "dict" "[" Type "," Type "]"        -- dictionary
               |  "struct"                         -- struct
               |  "undefined"                      -- undefined
 
