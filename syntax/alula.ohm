@@ -3,6 +3,7 @@ alula {
   Block       =  (Stmt)*
 
   Stmt        =  SimpleStmt                       -- simple
+              | "for:" Exp "," Exp "," Exp Suite  -- for
               |  "while:" Exp Suite               -- while
               |  "if:" Exp Suite
                  ("else if:" Exp Suite)*
@@ -11,10 +12,10 @@ alula {
   SimpleStmt  =  Type Ids ":" Exps                -- vardecl
               |  VarExps ":" Exps                 -- assign
               |  Call                             -- call
-              | "print:" Exp+                     -- print
+              |  "print:" Exp                     -- print
               |  "break"                          -- break
               |  "return:" Exp?                   -- return
-  Suite       =  "{" Stmt "}"
+  Suite       =  "{" newline? Stmt* newline? "}"
 
   Type        =  "string"                         -- string
               |  "num"                            -- number
@@ -48,9 +49,9 @@ alula {
   VarExp      =  VarExp "[" Exp "]"               -- subscripted
               |  id                               -- simple
   VarExps     =  NonemptyListOf<VarExp, ",">
-  Param       =  id (":" Exp)? 					  -- exp
-  			  |  Type id 						  -- simple
-  Params      =  ListOf<Param, ",">
+  Param       =  id (":" Exp)?                    -- exp
+              |  Type id                          -- simple
+  Params      =  Param ("," Param)*
   Arg         =  (id ":")? Exp
   Args        =  ListOf<Arg, ",">
 
@@ -67,6 +68,8 @@ alula {
   addop       =  "+" | "-"
   relop       =  "<=" | "<" | "==" | "!=" | ">=" | ">"
   mulop       =  "*" | "/" | "%"
+  increment   = "++"
+  decrement   = "--"
   prefixop    =  "-" | "not"
   newline     =  "\n"+
   space       :=  " " | "\t" | comment
