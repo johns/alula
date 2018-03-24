@@ -11,6 +11,7 @@ alula {
   SimpleStmt  =  Type Ids ":" Exps                -- vardecl
               |  VarExps ":" Exps                 -- assign
               |  Call                             -- call
+              | "print:" Exp+                     -- print
               |  "break"                          -- break
               |  "return:" Exp?                   -- return
   Suite       =  "{" Stmt "}"
@@ -68,7 +69,7 @@ alula {
   mulop       =  "*" | "/" | "%"
   prefixop    =  "-" | "not"
   newline     =  "\n"+
-  space      :=  " " | "\t" | comment
+  space       :=  " " | "\t" | comment
   comment     =  "#" ~":" (~"\n" any)* "\n"
               |  "#:" (any)* ":#"
 }

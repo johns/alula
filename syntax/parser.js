@@ -15,6 +15,7 @@ const ohm = require('ohm-js');
 const Program = require('../ast/program');
 const VariableDeclaration = require('../ast/variable-declaration');
 const AssignmentStatement = require('../ast/assignment-statement');
+const PrintStatement = require('../ast/print-statement');
 const BreakStatement = require('../ast/break-statement');
 const ReturnStatement = require('../ast/return-statement');
 const IfStatement = require('../ast/if-statement');
@@ -58,6 +59,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   },
   SimpleStmt_vardecl(_1, v, _2, e) { return new VariableDeclaration(v.ast(), e.ast()); },
   SimpleStmt_assign(v, _, e) { return new AssignmentStatement(v.ast(), e.ast()); },
+  SimpleStmt_print(_, e) { return new PrintStatement(unpack(e.ast())) },
   SimpleStmt_break(_) { return new BreakStatement(); },
   SimpleStmt_return(_, e) { return new ReturnStatement(unpack(e.ast())); },
   SimpleStmt_call(c) { return new CallStatement(c.ast()); },
