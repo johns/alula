@@ -7,16 +7,16 @@ function fibonacci: num position {
 }
 
 
-  function average: num list {
-    num multiplied: 1
-    for: i:0, i < (list -> length), i++ {
-      multiplied *: list[i]
-    }
-    return multiplied / (list -> length)
+function average: num list {
+  num multiplied: 1
+  for: i:0, i < (list -> length), i++ {
+    multiplied *: list[i]
   }
+  return multiplied / (list -> length)
+}
 
 
-  function oddOrEven: num number {
+function oddOrEven: num number {
   if: number % 2 == 0 {
     return: 'even'
   } else:
