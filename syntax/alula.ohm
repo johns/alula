@@ -1,21 +1,21 @@
 alula {
-  Program     =  Block
+  Program     =  newline* Block newline*
   Block       =  (Stmt)*
 
-  Stmt        =  SimpleStmt                       -- simple
-              | "for:" Exp "," Exp "," Exp Suite  -- for
-              |  "while:" Exp Suite               -- while
-              |  "if:" Exp Suite
+  Stmt        =  newline* SimpleStmt newline*     -- simple
+  			      |  newline* "function" id ":" Params Suite newline*  -- function
+              |  newline* "for:" Exp "," Exp "," Exp Suite newline* -- for
+              |  newline* "while:" Exp Suite newline*              -- while
+              |  newline* "if:" Exp Suite
                  ("else if:" Exp Suite)*
-                 ("else:" Suite)?                 -- if
-              |  "function" id ":" Params Suite   -- function
+                 ("else:" Suite)? newline*        -- if
   SimpleStmt  =  Type Ids ":" Exps                -- vardecl
               |  VarExps ":" Exps                 -- assign
               |  Call                             -- call
               |  "print:" Exp                     -- print
               |  "break"                          -- break
               |  "return:" Exp?                   -- return
-  Suite       =  "{" newline? Stmt* newline? "}"
+  Suite       =  "{" Stmt* "}"
 
   Type        =  "string"                         -- string
               |  "num"                            -- number
