@@ -46,7 +46,7 @@ function unpack(a) {
 
 const astGenerator = grammar.createSemantics().addOperation('ast', {
   Program(body) { return new Program(body.ast()); },
-  Stmt_simple(statement) { return statement.ast(); },
+  Stmt_simple(statement, _) { return statement.ast(); },
   Stmt_while(_, test, suite) { return new WhileStatement(test.ast(), suite.ast()); },
   Stmt_if(_1, firstTest, firstSuite, _2, moreTests, moreSuites, _3, lastSuite) {
     const tests = [firstTest.ast(), ...moreTests.ast()];

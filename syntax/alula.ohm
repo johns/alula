@@ -2,8 +2,8 @@ alula {
   Program     =  Block
   Block       =  (Stmt)*
 
-  Stmt        =  SimpleStmt                       -- simple
-              | "for:" Exp "," Exp "," Exp Suite  -- for
+  Stmt        =  SimpleStmt newline*              -- simple
+              |  "for:" Exp "," Exp "," Exp Suite -- for
               |  "while:" Exp Suite               -- while
               |  "if:" Exp Suite
                  ("else if:" Exp Suite)*
@@ -15,7 +15,7 @@ alula {
               |  "print:" Exp                     -- print
               |  "break"                          -- break
               |  "return:" Exp?                   -- return
-  Suite       =  "{" newline? Stmt* newline? "}"
+  Suite       =  "{" newline* Stmt* newline* "}"
 
   Type        =  "string"                         -- string
               |  "num"                            -- number
