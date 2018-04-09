@@ -1,6 +1,6 @@
 function fibonacci: num position {
   num result: 1
-  for: i: 1, i < (position -> length), i++ {
+  for: num i: 1, i < (position -> length), i++ {
     result +: result
   }
   return: result
@@ -9,7 +9,7 @@ function fibonacci: num position {
 
 function average: num list {
   num multiplied: 1
-  for: i:0, i < (list -> length), i++ {
+  for: num i: 0, i < (list -> length), i++ {
     multiplied *: list[i]
   }
   return multiplied / (list -> length)
