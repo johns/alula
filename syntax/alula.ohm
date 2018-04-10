@@ -1,14 +1,14 @@
 alula {
-  Program     =  newline* Block newline*
+  Program     =   Block
   Block       =  (Stmt)*
 
-  Stmt        =  newline* SimpleStmt newline*     -- simple
-  			      |  newline* "function" id ":" Params? Suite newline*  -- function
-              |  newline* "for:" ListOf<SimpleStmt,","> Suite newline*    -- for
-              |  newline* "while:" Exp Suite newline*              -- while
-              |  newline* "if:" Exp Suite
+  Stmt        =  SimpleStmt                             -- simple
+  			      |  "function" id ":" Params? Suite        -- function
+              |  "for:" ListOf<SimpleStmt,","> Suite    -- for
+              |  "while:" Exp Suite                     -- while
+              |  "if:" Exp Suite
                  (("else if:" Exp Suite)*)?
-                 ("else:" Stmt)? newline*         -- if
+                 ("else:" Stmt)?                  -- if
   SimpleStmt  =  Type Ids ":" Exps                -- vardecl
               |  VarExps (":"| assignop) Exps     -- assign
               |  Call                             -- call
@@ -77,7 +77,8 @@ alula {
   decrement   = "--"
   prefixop    =  "-" | "not"
   newline     =  "\n"+
-  space       :=  " " | "\t" | comment
+  space       += comment | blockComm
   comment     =  "#" ~":" (~"\n" any)* "\n"
-              |  "#:" (any)* ":#"
+  blockComm   =  "#:" (~":#" any)* ":#"
+
 }
