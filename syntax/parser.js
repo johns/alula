@@ -18,6 +18,8 @@ const AssignmentStatement = require('../ast/assignment-statement');
 const PrintStatement = require('../ast/print-statement');
 const BreakStatement = require('../ast/break-statement');
 const ReturnStatement = require('../ast/return-statement');
+// add for-statement.js to ../ast
+const ForStatement = require('../ast/for-statement');
 const IfStatement = require('../ast/if-statement');
 const Case = require('../ast/case');
 const WhileStatement = require('../ast/while-statement');
@@ -47,6 +49,7 @@ function unpack(a) {
 const astGenerator = grammar.createSemantics().addOperation('ast', {
   Program(body) { return new Program(body.ast()); },
   Stmt_simple(statement, _) { return statement.ast(); },
+  Stmt_for(_1, e1, _2, e2, _3, e3, Suite) { return new ForStatement(e1.ast(), e2.ast(), e3.ast(), Suite.ast()) },
   Stmt_while(_, test, suite) { return new WhileStatement(test.ast(), suite.ast()); },
   Stmt_if(_1, firstTest, firstSuite, _2, moreTests, moreSuites, _3, lastSuite) {
     const tests = [firstTest.ast(), ...moreTests.ast()];
