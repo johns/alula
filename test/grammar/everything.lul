@@ -7,30 +7,27 @@ function fibonacci: num position {
 }
 
 
-function average: num list {
+function average: list[num] nums {
   num multiplied: 1
-  for: num i: 0, i < (list -> length), i++ {
-    multiplied *: list[i]
+  for: num i: 0, i < (nums -> length), i++ {
+    multiplied *: nums[i]
   }
-  return multiplied / (list -> length)
+  return: multiplied / (nums -> length)
 }
 
 
 function oddOrEven: num number {
   if: number % 2 == 0 {
-    return: 'even'
+    return: "even"
   } else:
-    return: 'odd'
+    return: "odd"
 }
 
 
 function closure: num x, num y {
-  currentX: x
+  num currentX: x
   return: function next: {
     currentX: currentX * y
     return: currentX
   }
 }
-
-closureVariable: closure: 3, 2
-closureVariable -> next

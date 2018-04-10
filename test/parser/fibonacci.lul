@@ -1,6 +1,6 @@
 function fibonacci: num position {
   num result: 1
-  for: i: 1, i < (position -> length), i++ {
+  for: num i: 1, i < (position -> length), i++ {
     result +: result
   }
   return: result

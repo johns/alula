@@ -3,18 +3,18 @@ alula {
   Block       =  (Stmt)*
 
   Stmt        =  newline* SimpleStmt newline*     -- simple
-  			      |  newline* "function" id ":" Params Suite newline*  -- function
-              |  newline* "for:" ListOf<Exp,","> Suite newline*    -- for
+  			      |  newline* "function" id ":" Params? Suite newline*  -- function
+              |  newline* "for:" ListOf<SimpleStmt,","> Suite newline*    -- for
               |  newline* "while:" Exp Suite newline*              -- while
               |  newline* "if:" Exp Suite
                  (("else if:" Exp Suite)*)?
-                 ("else:" Stmt)? newline*        -- if
+                 ("else:" Stmt)? newline*         -- if
   SimpleStmt  =  Type Ids ":" Exps                -- vardecl
-              |  VarExps (":"| assignop) Exps  -- assign
+              |  VarExps (":"| assignop) Exps     -- assign
               |  Call                             -- call
               |  "print:" Exp                     -- print
               |  "break"                          -- break
-              |  "return" Exp?                   -- return
+              |  "return:" Exp?                   -- return
   Suite       =  "{" Stmt* "}"
 
   Type        =  "string"                         -- string
@@ -34,9 +34,9 @@ alula {
               |  Exp3
   Exp3        =  Exp3 mulop Exp4                  -- binary
               |  Exp4
-  Exp4		  =	 id "->" Exp4					  -- binary
-  			  |  Exp5
-  Exp5		  =  Exp5 (increment | decrement)     -- unary
+  Exp4		    =	 id "->" Exp4					            -- binary
+  			      |  Exp5
+  Exp5		    =  Exp5 (increment | decrement)       -- unary
               |  Exp6
   Exp6        =  prefixop Exp7                    -- unary
               |  Exp7
