@@ -22,15 +22,16 @@ In many programming language, the equal sign has many contextual uses. For examp
 | for: num i:0, i < max, i++ {...} | for (var i = 0; i < max; i++) {...} | for-loop |
 | return: 0 | return 0; | return statement |
 | variable -> getValue: 12 -> getMax -> toString | variable.getValueAt(12).getMax().toString() | Chain-able Functions
-| # single line comment | // single line comment | single line comment |
-| #: block comment :# | /\* block comment */ | multiple line comment |
+| num answer: sum: 5, 3 | let answer = sum(5,3) | Single Functions
+| # single line comment | // single line comment | Single line comment |
+| #: block comment :# | /\* block comment */ | Multiple line comment |
 
 
 * Alula contains 7 types. They are declared as followed
   * num numberVariable: 2
   * bool booleanVariable: false
   * string stringVariable: "This is text."
-  * list listOfVariables<type>: ["List", "of", "four", "variables"]
+  * list listOfVariables&lt;type>: ["List", "of", "four", "variables"]
   * dict dictionaryOfVariables: {John: "Scott", J: 4, Olive: true}
   * struct aStructure: {...}
   * undefined
