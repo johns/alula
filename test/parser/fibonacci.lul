@@ -6,5 +6,5 @@ function fibonacci: num position {
   return: result
 }
 
-print: fibonacci 5
-print: fibonacci 10
+print: fibonacci: 5
+print: fibonacci: 10
