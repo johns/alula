@@ -1,20 +1,28 @@
-def one():
-def two():
-def three():
-return
-def four(): return
-def five():
-def six():
-return
-return
+function one: {
+     function two: {
+           function three: {
+               return: function four: {return}
+            }
 
-return
-def seven():
-return
-if (true):
-if (true):
-if (true):
-return
+            function five: {
+                function six: {
+                    return
+                }
+                return: six
+            }
+            return
+      }
+      function seven: {
+         return:
+            if: true {
+                if: true {
+                    if: true {
+                       return
+                    }
+                }
+            }
+        }
 
-while false:
-return
+       while: false {
+           return
+       }
