@@ -18,7 +18,6 @@ const AssignmentStatement = require('../ast/assignment-statement');
 const PrintStatement = require('../ast/print-statement');
 const BreakStatement = require('../ast/break-statement');
 const ReturnStatement = require('../ast/return-statement');
-// add for-statement.js to ../ast
 const ForStatement = require('../ast/for-statement');
 const IfStatement = require('../ast/if-statement');
 const Case = require('../ast/case');
@@ -47,17 +46,17 @@ function unpack(a) {
 /* eslint-disable no-unused-vars */
 
 const astGenerator = grammar.createSemantics().addOperation('ast', {
-  Program(body) { return new Program(body.ast()); },
-  Stmt_simple(statement, _) { return statement.ast(); },
-  Stmt_for(_1, e1, _2, e2, _3, e3, Suite) { return new ForStatement(e1.ast(), e2.ast(), e3.ast(), Suite.ast()) },
-  Stmt_while(_, test, suite) { return new WhileStatement(test.ast(), suite.ast()); },
-  Stmt_if(_1, firstTest, firstSuite, _2, moreTests, moreSuites, _3, lastSuite) {
+  Program(_, body, _1) { return new Program(body.ast()); },
+  Stmt_simple(_, statement, _1) { return statement.ast(); },
+  Stmt_for(_, _1, e, s, _2) { return new ForStatement(e.ast(), Suite.ast()) },
+  Stmt_while(_, _1, test, suite, _2) { return new WhileStatement(test.ast(), suite.ast()); },
+  Stmt_if(_, _1, firstTest, firstSuite, _2, moreTests, moreSuites, _3, lastSuite, _4) {
     const tests = [firstTest.ast(), ...moreTests.ast()];
     const bodies = [firstSuite.ast(), ...moreSuites.ast()];
     const cases = tests.map((test, index) => new Case(test, bodies[index]));
     return new IfStatement(cases, unpack(lastSuite.ast()));
   },
-  Stmt_function(_1, id, _2, params, suite) {
+  Stmt_function(_, _1, id, _2, params, suite, _3) {
     return new FunctionDeclaration(id.ast(), params.ast(), suite.ast());
   },
   SimpleStmt_vardecl(_1, v, _2, e) { return new VariableDeclaration(v.ast(), e.ast()); },
@@ -71,12 +70,12 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   Exp1_binary(left, op, right) { return new BinaryExpression(op.ast(), left.ast(), right.ast()); },
   Exp2_binary(left, op, right) { return new BinaryExpression(op.ast(), left.ast(), right.ast()); },
   Exp3_binary(left, op, right) { return new BinaryExpression(op.ast(), left.ast(), right.ast()); },
-  Exp4_unary(op, operand) { return new UnaryExpression(op.ast(), operand.ast()); },
-  Exp5_unary(operand, op) { return new UnaryExpression(operand.ast(), op.ast()); },
-  Exp6_parens(_1, expression, _2) { return expression.ast(); },
+  Exp4_binary(id, op, operand) { return new UnaryExpression(id.ast(), op.ast(), operand.ast()); },
+  Exp5_unary(expression, e) { return new UnaryExpression(expressio .ast(), e.ast()); },
+  Exp6_unary(e, expression) { return e.ast(), expression.ast(); },
+  Exp7_parens(_1, expression, _2) { return expression.ast(); },
   Call(callee, _1, args) { return new Call(callee.ast(), args.ast()); },
   VarExp_subscripted(v, _1, e, _2) { return new SubscriptedExpression(v.ast(), e.ast()); },
-  VarExp_arrow(v, _1, e) { return new ArrowExpression(v.ast(), e.ast()) },
   VarExp_simple(id) { return new IdentifierExpression(id.ast()); },
   Param(id) { return new Parameter(id.ast(), unpack(exp.ast())); },
   Arg(id, _, exp) { return new Argument(unpack(id.ast()), exp.ast()); },
