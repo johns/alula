@@ -1,28 +1,27 @@
 function one: {
-     function two: {
-           function three: {
-               return: function four: {return}
-            }
-
-            function five: {
-                function six: {
-                    return
-                }
-                return: six
-            }
-            return
-      }
-      function seven: {
-         return:
-            if: true {
-                if: true {
-                    if: true {
-                       return
-                    }
-                }
-            }
-        }
-
-       while: false {
-           return
-       }
+⇨function two: {
+⇨function three: {
+⇨return: function four: {return:}
+⇦}
+function five: {
+⇨function six: {
+⇨return:
+⇦}
+return: "six"
+⇦}
+return:
+⇦}
+function seven: {
+⇨return:
+⇨if: true {
+⇨if: true {
+⇨if: true {
+⇨return:
+⇦}
+⇦}
+⇦}
+⇦⇦}
+while: false {
+⇨return:
+⇦}
+⇦}
