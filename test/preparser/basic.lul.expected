@@ -1,12 +1,12 @@
 function f: {
-break
+  break
 }
 
 function g: {
-if: x < 1 {
-x: 3
-print: x
-} else: {
-return: "z"
-}
+  if: x < 1 {
+    x: 3
+    print: x
+  } else: {
+    return: "z"
+  }
 }
