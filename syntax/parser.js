@@ -46,17 +46,17 @@ function unpack(a) {
 /* eslint-disable no-unused-vars */
 
 const astGenerator = grammar.createSemantics().addOperation('ast', {
-  Program(_, body, _1) { return new Program(body.ast()); },
-  Stmt_simple(_, statement, _1) { return statement.ast(); },
-  Stmt_for(_, _1, e, s, _2) { return new ForStatement(e.ast(), Suite.ast()) },
-  Stmt_while(_, _1, test, suite, _2) { return new WhileStatement(test.ast(), suite.ast()); },
-  Stmt_if(_, _1, firstTest, firstSuite, _2, moreTests, moreSuites, _3, lastSuite, _4) {
+  Program(body) { return new Program(body.ast()); },
+  Stmt_simple(statement) { return statement.ast(); },
+  Stmt_for(_1, e, s) { return new ForStatement(e.ast(), Suite.ast()) },
+  Stmt_while(_1, test, suite) { return new WhileStatement(test.ast(), suite.ast()); },
+  Stmt_if(_1, firstTest, firstSuite, _2, moreTests, moreSuites, _3, lastSuite) {
     const tests = [firstTest.ast(), ...moreTests.ast()];
     const bodies = [firstSuite.ast(), ...moreSuites.ast()];
     const cases = tests.map((test, index) => new Case(test, bodies[index]));
     return new IfStatement(cases, unpack(lastSuite.ast()));
   },
-  Stmt_function(_, _1, id, _2, params, suite, _3) {
+  Stmt_function(_1, id, _2, params, suite) {
     return new FunctionDeclaration(id.ast(), params.ast(), suite.ast());
   },
   SimpleStmt_vardecl(_1, v, _2, e) { return new VariableDeclaration(v.ast(), e.ast()); },
