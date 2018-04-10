@@ -12,7 +12,7 @@ alula {
   SimpleStmt  =  Type Ids ":" Exps                -- vardecl
               |  VarExps (":"| assignop) Exps     -- assign
               |  Call                             -- call
-              |  "print:" Stmt                     -- print
+              |  "print:" Stmt                    -- print
               |  "break"                          -- break
               |  "return:" Exp?                   -- return
   Suite       =  "{" Stmt* "}"
