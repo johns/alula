@@ -1,21 +1,21 @@
 alula {
-  Program     =  Block
+  Program     =  newline* Block newline*
   Block       =  (Stmt)*
 
-  Stmt        =  SimpleStmt newline*              -- simple
-              |  "for:" SimpleStmt "," Exp "," Exp Suite -- for
-              |  "while:" Exp Suite               -- while
-              |  "if:" Exp Suite
-                 ("else if:" Exp Suite)*
-                 ("else:" Suite)?                 -- if
-              |  "function" id ":" Params Suite   -- function
+  Stmt        =  newline* SimpleStmt newline*     -- simple
+  			      |  newline* "function" id ":" Params Suite newline*  -- function
+              |  newline* "for:" ListOf<Exp,","> Suite newline*    -- for
+              |  newline* "while:" Exp Suite newline*              -- while
+              |  newline* "if:" Exp Suite
+                 (("else if:" Exp Suite)*)?
+                 ("else:" Stmt)? newline*        -- if
   SimpleStmt  =  Type Ids ":" Exps                -- vardecl
-              |  VarExps ":" Exps                 -- assign
+              |  VarExps (":"| assignop) Exps  -- assign
               |  Call                             -- call
               |  "print:" Exp                     -- print
               |  "break"                          -- break
-              |  "return:" Exp?                   -- return
-  Suite       =  "{" newline* Stmt* newline* "}"
+              |  "return" Exp?                   -- return
+  Suite       =  "{" Stmt* "}"
 
   Type        =  "string"                         -- string
               |  "num"                            -- number
@@ -34,11 +34,13 @@ alula {
               |  Exp3
   Exp3        =  Exp3 mulop Exp4                  -- binary
               |  Exp4
-  Exp4        =  prefixop Exp5                    -- unary
-              |  Exp5
-  Exp5        =  Exp6 postfixop                   -- unary
+  Exp4		  =	 id "->" Exp4					  -- binary
+  			  |  Exp5
+  Exp5		  =  Exp5 (increment | decrement)     -- unary
               |  Exp6
-  Exp6        =  boollit
+  Exp6        =  prefixop Exp7                    -- unary
+              |  Exp7
+  Exp7        =  boollit
               |  numlit
               |  strlit
               |  Call
@@ -49,7 +51,6 @@ alula {
   Exps        =  NonemptyListOf<Exp, ",">
   Ids         =  NonemptyListOf<id, ",">
   VarExp      =  VarExp "[" Exp "]"               -- subscripted
-              |  VarExp "->" id                   -- arrow
               |  id                               -- simple
   VarExps     =  NonemptyListOf<VarExp, ",">
   Param       =  id (":" Exp)?                    -- exp
@@ -68,10 +69,12 @@ alula {
   strlit      = "\"" (~"\\" ~"\"" ~"\n" any | escape)* "\""
   escape      = "\\" ("\\" | "\"" | "n")          -- simple
               | "\\u{" hexDigit+ "}"              -- codepoint
-  addop       =  "+" | "-" | "+:" | "-:"
+  addop       =  "+" | "-"
   relop       =  "<=" | "<" | "==" | "!=" | ">=" | ">"
   mulop       =  "*" | "/" | "%"
-  postfixop   =  "++" | "--"
+  assignop	  =  "+:" | "-:" | "*:" | "%:"
+  increment   = "++"
+  decrement   = "--"
   prefixop    =  "-" | "not"
   newline     =  "\n"+
   space       :=  " " | "\t" | comment
