@@ -48,7 +48,7 @@ function unpack(a) {
 const astGenerator = grammar.createSemantics().addOperation('ast', {
   Program(body) { return new Program(body.ast()); },
   Stmt_simple(statement) { return statement.ast(); },
-  Stmt_for(_1, e, s) { return new ForStatement(e.ast(), Suite.ast()) },
+  Stmt_for(_1, e, suite) { return new ForStatement(e.ast(), suite.ast()) },
   Stmt_while(_1, test, suite) { return new WhileStatement(test.ast(), suite.ast()); },
   Stmt_if(_1, firstTest, firstSuite, _2, moreTests, moreSuites, _3, lastSuite) {
     const tests = [firstTest.ast(), ...moreTests.ast()];
@@ -65,13 +65,14 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   SimpleStmt_break(_) { return new BreakStatement(); },
   SimpleStmt_return(_, e) { return new ReturnStatement(unpack(e.ast())); },
   SimpleStmt_call(c) { return new CallStatement(c.ast()); },
+  Suite(_1, statement, _2) { return [statement.ast()]; },
   Exp_or(left, op, right) { return new BinaryExpression(op.ast(), left.ast(), right.ast()); },
   Exp_and(left, op, right) { return new BinaryExpression(op.ast(), right.ast()); },
   Exp1_binary(left, op, right) { return new BinaryExpression(op.ast(), left.ast(), right.ast()); },
   Exp2_binary(left, op, right) { return new BinaryExpression(op.ast(), left.ast(), right.ast()); },
   Exp3_binary(left, op, right) { return new BinaryExpression(op.ast(), left.ast(), right.ast()); },
   Exp4_binary(id, op, operand) { return new UnaryExpression(id.ast(), op.ast(), operand.ast()); },
-  Exp5_unary(expression, e) { return new UnaryExpression(expressio .ast(), e.ast()); },
+  Exp5_unary(expression, e) { return new UnaryExpression(expression.ast(), e.ast()); },
   Exp6_unary(e, expression) { return e.ast(), expression.ast(); },
   Exp7_parens(_1, expression, _2) { return expression.ast(); },
   Call(callee, _1, args) { return new Call(callee.ast(), args.ast()); },
