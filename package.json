@@ -13,7 +13,8 @@
     "eslint": "^4.16.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
-    "jest": "^22.4.2",
+    "jest": "^22.4.3",
+    "jest-cli": "^22.4.3",
     "ohm-js": "^0.14.0"
   },
   "scripts": {
