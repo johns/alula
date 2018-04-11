@@ -5,7 +5,7 @@ and then printing the result.
 
 
 function sum: num x, num y {
-  return: x + y   # Adds two nums together and returns the result
+  return: x + y    # Adds two nums together and returns the result
 }
 
 print: sum: 4, 3
