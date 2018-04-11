@@ -77,7 +77,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   Call(callee, _1, args) { return new Call(callee.ast(), args.ast()); },
   VarExp_subscripted(v, _1, e, _2) { return new SubscriptedExpression(v.ast(), e.ast()); },
   VarExp_simple(id) { return new IdentifierExpression(id.ast()); },
-  Param(id) { return new Parameter(id.ast(), unpack(exp.ast())); },
+  Param(_1, id, _2, exp) { return new Parameter(id.ast(), unpack(exp.ast())); },
   Arg(id, _, exp) { return new Argument(unpack(id.ast()), exp.ast()); },
   NonemptyListOf(first, _, rest) { return [first.ast(), ...rest.ast()]; },
   EmptyListOf() { return []; },

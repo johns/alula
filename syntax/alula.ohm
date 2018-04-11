@@ -53,9 +53,8 @@ alula {
   VarExp      =  VarExp "[" Exp "]"               -- subscripted
               |  id                               -- simple
   VarExps     =  NonemptyListOf<VarExp, ",">
-  Param       =  id (":" Exp)?                    -- exp
-              |  Type id                          -- simple
-  Params      =  Param ("," Param)*
+  Param       =  Type id (":" Exp)?
+  Params      =  ListOf<Param, ",">
   Arg         =  (id ":")? Exp
   Args        =  ListOf<Arg, ",">
 
