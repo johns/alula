@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>The Alula Programming Language</title>
+    <title>The alula Programming Language</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -43,26 +43,27 @@
       </div>
     </nav>
 
-    
-    <header class="masthead text-white text-center">
+
+
+    <div class="full-page text-white text-center">
       <div class="overlay"></div>
-      <div class="container py-4">
-        <div class="row">
+      <div class="center-page-caption">
+        <div class="row full-width">
           <div class="col-xl-9 mx-auto">
-            <h1 class="mb-5">The Alula Programming Language</h1>
+            <h1 class="mb-5">The alula Programming Language</h1>
           </div>
         </div>
       </div>
-    </header>
+    </div>
 
     <section id="about">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
             <h2>About</h2>
-            <p class="lead">Welcome to Alula, the language that does away with the semicolon, but embraces the colon. Alula is a static, strongly typed programming languages that focuses on parallelism and simplicity through the standardized use of the colon. Alula takes inspiration from Python, with hints of Elm.</p>
+            <p class="lead">Welcome to alula, the language that does away with the semicolon, but embraces the colon. alula is a static, strongly typed programming languages that focuses on parallelism and simplicity through the standardized use of the colon. alula takes inspiration from Python, with hints of Elm.</p>
 
-						<p class="lead">In many programming language, the equal sign has many contextual uses. For example, in JavaScript, a single equal sign (=) is used to declare, while a double or triple equal sign (==/===) is for comparing. The overuse of such a character can cause unnecessary confusion. In Alula, the equal sign is utilized, but only for the comparison of values. All declarations, statements, and function calls begin with a colon, allowing for an easier understanding for those unfamiliar with the language. In Layman's terms, anything that can be called to do something begins with a colon.</p>
+						<p class="lead">In many programming language, the equal sign has many contextual uses. For example, in JavaScript, a single equal sign (=) is used to declare, while a double or triple equal sign (==/===) is for comparing. The overuse of such a character can cause unnecessary confusion. In alula, the equal sign is utilized, but only for the comparison of values. All declarations, statements, and function calls begin with a colon, allowing for an easier understanding for those unfamiliar with the language. In Layman's terms, anything that can be called to do something begins with a colon.</p>
           </div>
         </div>
       </div>
@@ -73,7 +74,24 @@
         <div class="row">
           <div class="col-lg-8 mx-auto">
             <h2>Features</h2>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut optio velit inventore, expedita quo laboriosam possimus ea consequatur vitae, doloribus consequuntur ex. Nemo assumenda laborum vel, labore ut velit dignissimos.</p>
+            <br>
+            <ul class="lead">
+            	<li>All variable declarations, function calls, and and conditional statements require a colon to designate the beginning
+							<li>Any arguments are separated with a comma directly after the colon
+							<li>Chained functions are separated by ->, designated another "step"
+							<li>Parenthesis are exclusively used for logic and arithmetic precedence
+							<li>Parameters for functions occur after the colon, but before the curly brackets. Multiple parameters are separated with commas
+            </ul>
+            <h5> Types </h5>
+            <ul class="lead">
+            	<li>num numberVariable: 2
+ 							<li>bool booleanVariable: false
+							<li>string stringVariable: "This is text."
+							<li>list listOfVariables<type>: ["List", "of", "four", "variables"]
+							<li>dict dictionaryOfVariables: {John: "Scott", J: 4, Olive: true}
+							<li>struct aStructure: {...}
+							<li>undefined
+            </ul>
           </div>
         </div>
       </div>
@@ -84,7 +102,69 @@
         <div class="row">
           <div class="col-lg-8 mx-auto">
             <h2>Examples</h2>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
+            <br>
+            <h5>Hello World</h5>
+            <pre><code>
+print: "Hello World"
+          	</code></pre>
+          	<br>
+          	<h5>Average</h5>
+          	<p>Finds the average of a list of numbers</p>
+          	<pre>
+          		<code>
+function average: num list {
+  num multiplied: 1
+  for: i:0, i < (list -> length), i++ {
+    multiplied *: list[i]
+  }
+  return multiplied / (list -> length)
+}
+	          	</code>
+	          </pre>
+	          <br>
+          	<h5>Fibonacci Sequence</h5>
+          	<p>Iteratively finds fibonacci number at the nth index value</p>
+          	<pre>
+          		<code>
+function fibonacci: num position {
+  num result: 1
+  for: i: 1, i < (position -> length), i++ {
+    result +: result
+  }
+  return: result
+}
+	          	</code>
+	          </pre>
+	          <br>
+          	<h5>Check Odd / Even</h5>
+          	<p>Returns odd or even based on the input</p>
+          	<pre>
+          		<code>
+function oddOrEven: num number {
+  if: number % 2 == 0 {
+    return: 'even'
+  } else:
+    return: 'odd'
+}
+	          	</code>
+	          </pre>
+	          <br>
+          	<h5>Closure</h5>
+          	<p>A basic closure that finds the previous x value and multiplies it by y</p>
+          	<pre>
+          		<code>
+function closure: num x, num y {
+  currentX: x
+  return: function next: {
+    currentX: currentX * y
+    return: currentX
+  }
+}
+
+closureVariable: closure: 3, 2    
+closureVariable -> next
+	          	</code>
+	          </pre>
           </div>
         </div>
       </div>
@@ -93,7 +173,7 @@
     <!-- Footer -->
     <footer class="py-5 bg-dark">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+        <p class="m-0 text-center text-white">Copyright &copy; alula 2018</p>
       </div>
       <!-- /.container -->
     </footer>

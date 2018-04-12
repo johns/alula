@@ -1,18 +1,18 @@
 alula {
-  Program     =  newline* Block newline*
+  Program     =   Block
   Block       =  (Stmt)*
 
-  Stmt        =  newline* SimpleStmt newline*     -- simple
-  			      |  newline* "function" id ":" Params? Suite newline*  -- function
-              |  newline* "for:" ListOf<SimpleStmt,","> Suite newline*    -- for
-              |  newline* "while:" Exp Suite newline*              -- while
-              |  newline* "if:" Exp Suite
+  Stmt        =  SimpleStmt                             -- simple
+  			      |  "function" id ":" Params? Suite        -- function
+              |  "for:" ListOf<SimpleStmt,","> Suite    -- for
+              |  "while:" Exp Suite                     -- while
+              |  "if:" Exp Suite
                  (("else if:" Exp Suite)*)?
-                 ("else:" Stmt)? newline*         -- if
+                 ("else:" Stmt)?                  -- if
   SimpleStmt  =  Type Ids ":" Exps                -- vardecl
               |  VarExps (":"| assignop) Exps     -- assign
               |  Call                             -- call
-              |  "print:" Exp                     -- print
+              |  "print:" Stmt                    -- print
               |  "break"                          -- break
               |  "return:" Exp?                   -- return
   Suite       =  "{" Stmt* "}"
@@ -53,9 +53,8 @@ alula {
   VarExp      =  VarExp "[" Exp "]"               -- subscripted
               |  id                               -- simple
   VarExps     =  NonemptyListOf<VarExp, ",">
-  Param       =  id (":" Exp)?                    -- exp
-              |  Type id                          -- simple
-  Params      =  Param ("," Param)*
+  Param       =  Type id (":" Exp)?
+  Params      =  ListOf<Param, ",">
   Arg         =  (id ":")? Exp
   Args        =  ListOf<Arg, ",">
 
@@ -77,7 +76,8 @@ alula {
   decrement   = "--"
   prefixop    =  "-" | "not"
   newline     =  "\n"+
-  space       :=  " " | "\t" | comment
+  space       += comment | blockComm
   comment     =  "#" ~":" (~"\n" any)* "\n"
-              |  "#:" (any)* ":#"
+  blockComm   =  "#:" (~":#" any)* ":#"
+
 }

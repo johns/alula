@@ -17,8 +17,12 @@
 module.exports = (source) => {
   const stack = [0];
   let result = '';
-  const text = source.endsWith('\n') ? source : `${source}\n`;
+  let text = source.endsWith('\n') ? source : `${source}\n`;
   const linePattern = /( *)([^\n]*\n)/g;
+  const commentPattern = /(#:(.|\s)*?:#)|(#(.)*)/gm;
+
+  text = text.replace(commentPattern, "");
+  text = text.trimLeft();
 
   for (let match = linePattern.exec(text); match !== null; match = linePattern.exec(text)) {
     const [indent, content] = [match[1].length, match[2]];
