@@ -78,3 +78,10 @@ header.masthead h1 {
     font-size: 3rem;
   }
 }
+
+pre code {
+  background-color: #eee;
+  border: 1px solid #999;
+  display: block;
+  padding: 20px;
+}
