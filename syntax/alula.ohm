@@ -21,9 +21,8 @@ alula {
               |  "num"                            -- number
               |  "bool"                           -- boolean
               |  "list" "[" Type "]"              -- list
-              |  "dict" "[" Type "," Type "]"     -- dictionary
-              |  "struct"                         -- struct
-              // "struct" "{" (Type ":" id)* "}"
+              |  "dict" "{" Type "," Type "}"     -- dictionary
+              |  "struct" "{" (Type ":" id)* "}"  -- struct
               |  "undefined"                      -- undefined
 
   Exp         =  Exp "or" Exp1                    -- or
@@ -35,27 +34,29 @@ alula {
               |  Exp3
   Exp3        =  Exp3 mulop Exp4                  -- binary
               |  Exp4
-  Exp4            =     id "->" Exp4                                -- binary
-                    |  Exp5
-  Exp5            =  Exp5 (increment | decrement)       -- unary
+  Exp4        =  id "->" Exp4                     -- binary
+              |  Exp5
+  Exp5        =  Exp5 (increment | decrement)     -- unary
               |  Exp6
   Exp6        =  prefixop Exp7                    -- unary
               |  Exp7
   Exp7        =  boollit
               |  numlit
               |  strlit
-              //|  "[" Exps "]"     -- listlit
-              //| "{" ListOf<Pair, ","> "}"
+              |  Listlit
+              |  Dictlit
+              |  Structlit
               |  Call
               |  VarExp
               |  "(" Exp ")"                      -- parens
+
   Call        =  VarExp ":" Args
-  // Pair     =  Exp ":" Exp
+  Pair        =  Exp ":" Exp
+  Structpair  =  Type ":" id
 
   Exps        =  NonemptyListOf<Exp, ",">
   Ids         =  NonemptyListOf<id, ",">
   VarExp      =  VarExp "[" Exp "]"               -- subscripted
-              |  VarExp "." id          -- struct
               |  id                               -- simple
   VarExps     =  NonemptyListOf<VarExp, ",">
   Param       =  Type id (":" Exp)?
@@ -71,6 +72,10 @@ alula {
   numlit      =  digit+ ("." digit+)? (("E" | "e") ("+" | "-")? digit+)?
   boollit     =  "true" | "false"
   strlit      = "\"" (~"\\" ~"\"" ~"\n" any | escape)* "\""
+  Listlit     = "[" Exps "]"
+  Dictlit     = "{" NonemptyListOf<Pair, ",">  "}"
+  Structlit   = "{" NonemptyListOf<Structpair, ","> "}"
+
   escape      = "\\" ("\\" | "\"" | "n")          -- simple
               | "\\u{" hexDigit+ "}"              -- codepoint
   addop       =  "+" | "-"
