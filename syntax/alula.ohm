@@ -3,7 +3,7 @@ alula {
   Block       =  (Stmt)*
 
   Stmt        =  SimpleStmt                             -- simple
-  			      |  "function" id ":" Params? Suite        -- function
+                    |  "function" id ":" Params? Suite        -- function
               |  "for:" ListOf<SimpleStmt,","> Suite    -- for
               |  "while:" Exp Suite                     -- while
               |  "if:" Exp Suite
@@ -23,6 +23,7 @@ alula {
               |  "list" "[" Type "]"              -- list
               |  "dict" "[" Type "," Type "]"     -- dictionary
               |  "struct"                         -- struct
+              // "struct" "{" (Type ":" id)* "}"
               |  "undefined"                      -- undefined
 
   Exp         =  Exp "or" Exp1                    -- or
@@ -34,23 +35,27 @@ alula {
               |  Exp3
   Exp3        =  Exp3 mulop Exp4                  -- binary
               |  Exp4
-  Exp4		    =	 id "->" Exp4					            -- binary
-  			      |  Exp5
-  Exp5		    =  Exp5 (increment | decrement)       -- unary
+  Exp4            =     id "->" Exp4                                -- binary
+                    |  Exp5
+  Exp5            =  Exp5 (increment | decrement)       -- unary
               |  Exp6
   Exp6        =  prefixop Exp7                    -- unary
               |  Exp7
   Exp7        =  boollit
               |  numlit
               |  strlit
+              //|  "[" Exps "]"     -- listlit
+              //| "{" ListOf<Pair, ","> "}"
               |  Call
               |  VarExp
               |  "(" Exp ")"                      -- parens
   Call        =  VarExp ":" Args
+  // Pair     =  Exp ":" Exp
 
   Exps        =  NonemptyListOf<Exp, ",">
   Ids         =  NonemptyListOf<id, ",">
   VarExp      =  VarExp "[" Exp "]"               -- subscripted
+              |  VarExp "." id          -- struct
               |  id                               -- simple
   VarExps     =  NonemptyListOf<VarExp, ",">
   Param       =  Type id (":" Exp)?
@@ -71,7 +76,7 @@ alula {
   addop       =  "+" | "-"
   relop       =  "<=" | "<" | "==" | "!=" | ">=" | ">"
   mulop       =  "*" | "/" | "%"
-  assignop	  =  "+:" | "-:" | "*:" | "%:"
+  assignop      =  "+:" | "-:" | "*:" | "%:"
   increment   = "++"
   decrement   = "--"
   prefixop    =  "-" | "not"
