@@ -43,8 +43,8 @@ alula {
   Exp7        =  boollit
               |  numlit
               |  strlit
-              |  listlit
-              |  dictlit
+              |  Listlit
+              |  Dictlit
               |  Call
               |  VarExp
               |  "(" Exp ")"                      -- parens
@@ -70,8 +70,8 @@ alula {
   numlit      =  digit+ ("." digit+)? (("E" | "e") ("+" | "-")? digit+)?
   boollit     =  "true" | "false"
   strlit      = "\"" (~"\\" ~"\"" ~"\n" any | escape)* "\""
-  listlit     = "[" Exps "]"
-  dictlit     = "{" NonemptyListOf<Pair, ",">  "}"
+  Listlit     = "[" Exps "]"
+  Dictlit     = "{" NonemptyListOf<Pair, ",">  "}"
 
   escape      = "\\" ("\\" | "\"" | "n")          -- simple
               | "\\u{" hexDigit+ "}"              -- codepoint

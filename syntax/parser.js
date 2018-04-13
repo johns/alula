@@ -87,8 +87,8 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   boollit(_) { return new BooleanLiteral(!!this.sourceString); },
   numlit(_1, _2, _3, _4, _5, _6) { return new NumericLiteral(+this.sourceString); },
   strlit(_1, chars, _6) { return new StringLiteral(this.sourceString); },
-  listlit(_1, e, _2) { return new ListLiteral(unpack(e.ast()))},
-  dictlit(_1, e, _2) { return new DictLiteral(unpack(e.ast()))},
+  Listlit(_1, e, _2) { return new ListLiteral(unpack(e.ast()))},
+  Dictlit(_1, e, _2) { return new DictLiteral(unpack(e.ast()))},
   id(_1, _2) { return this.sourceString; },
   _terminal() { return this.sourceString; },
 });
