@@ -21,9 +21,8 @@ alula {
               |  "num"                            -- number
               |  "bool"                           -- boolean
               |  "list" "[" Type "]"              -- list
-              |  "dict" "[" Type "," Type "]"     -- dictionary
-              |  "struct"                         -- struct
-              // "struct" "{" (Type ":" id)* "}"
+              |  "dict" "{" Type "," Type "}"     -- dictionary
+              |  "struct" "{" (Type ":" id)* "}"  -- struct
               |  "undefined"                      -- undefined
 
   Exp         =  Exp "or" Exp1                    -- or
@@ -44,13 +43,14 @@ alula {
   Exp7        =  boollit
               |  numlit
               |  strlit
-              //|  "[" Exps "]"     -- listlit
-              //| "{" ListOf<Pair, ","> "}"
+              |  listLit
+              |  dictLit
               |  Call
               |  VarExp
               |  "(" Exp ")"                      -- parens
+
   Call        =  VarExp ":" Args
-  // Pair     =  Exp ":" Exp
+  Pair     =  Exp ":" Exp
 
   Exps        =  NonemptyListOf<Exp, ",">
   Ids         =  NonemptyListOf<id, ",">
@@ -71,6 +71,9 @@ alula {
   numlit      =  digit+ ("." digit+)? (("E" | "e") ("+" | "-")? digit+)?
   boollit     =  "true" | "false"
   strlit      = "\"" (~"\\" ~"\"" ~"\n" any | escape)* "\""
+  listlit     = "[" Exps "]"
+  dictLit     = "{" ListOf(Pair, ",")  "}"
+
   escape      = "\\" ("\\" | "\"" | "n")          -- simple
               | "\\u{" hexDigit+ "}"              -- codepoint
   addop       =  "+" | "-"
