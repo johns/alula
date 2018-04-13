@@ -45,12 +45,14 @@ alula {
               |  strlit
               |  Listlit
               |  Dictlit
+              |  Structlit
               |  Call
               |  VarExp
               |  "(" Exp ")"                      -- parens
 
   Call        =  VarExp ":" Args
   Pair        =  Exp ":" Exp
+  Structpair  =  Type ":" id
 
   Exps        =  NonemptyListOf<Exp, ",">
   Ids         =  NonemptyListOf<id, ",">
@@ -72,6 +74,7 @@ alula {
   strlit      = "\"" (~"\\" ~"\"" ~"\n" any | escape)* "\""
   Listlit     = "[" Exps "]"
   Dictlit     = "{" NonemptyListOf<Pair, ",">  "}"
+  Structlit   = "{" NonemptyListOf<Structpair, ","> "}"
 
   escape      = "\\" ("\\" | "\"" | "n")          -- simple
               | "\\u{" hexDigit+ "}"              -- codepoint
