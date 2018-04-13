@@ -1,9 +1,9 @@
 {
   "statements": [
     {
-      "id": "fib",
+      "id": "fibonacci",
       "function": {
-        "id": "fib",
+        "id": "fibonacci",
         "params": [ { "id": "n", "defaultExpression": null } ],
         "body": [
           {
@@ -32,7 +32,7 @@
         "args": [
           {
             "id": null,
-            "expression": {"callee": {"id": "fib"}, "args": [{"id": null, "expression": {"value": 5}}]}
+            "expression": {"callee": {"id": "fibonacci"}, "args": [{"id": null, "expression": {"value": 5}}]}
           }
         ]
       }
@@ -43,7 +43,7 @@
         "args": [
           {
             "id": null,
-            "expression": {"callee": {"id": "fib"}, "args": [{"id": null, "expression": {"value": 10}}]}
+            "expression": {"callee": {"id": "fibonacci"}, "args": [{"id": null, "expression": {"value": 10}}]}
           }
         ]
       }
