@@ -34,28 +34,27 @@ alula {
               |  Exp3
   Exp3        =  Exp3 mulop Exp4                  -- binary
               |  Exp4
-  Exp4            =     id "->" Exp4                                -- binary
-                    |  Exp5
-  Exp5            =  Exp5 (increment | decrement)       -- unary
+  Exp4        =  id "->" Exp4                     -- binary
+              |  Exp5
+  Exp5        =  Exp5 (increment | decrement)     -- unary
               |  Exp6
   Exp6        =  prefixop Exp7                    -- unary
               |  Exp7
   Exp7        =  boollit
               |  numlit
               |  strlit
-              |  listLit
-              |  dictLit
+              |  listlit
+              |  dictlit
               |  Call
               |  VarExp
               |  "(" Exp ")"                      -- parens
 
   Call        =  VarExp ":" Args
-  Pair     =  Exp ":" Exp
+  Pair        =  Exp ":" Exp
 
   Exps        =  NonemptyListOf<Exp, ",">
   Ids         =  NonemptyListOf<id, ",">
   VarExp      =  VarExp "[" Exp "]"               -- subscripted
-              |  VarExp "." id          -- struct
               |  id                               -- simple
   VarExps     =  NonemptyListOf<VarExp, ",">
   Param       =  Type id (":" Exp)?
@@ -72,7 +71,7 @@ alula {
   boollit     =  "true" | "false"
   strlit      = "\"" (~"\\" ~"\"" ~"\n" any | escape)* "\""
   listlit     = "[" Exps "]"
-  dictLit     = "{" ListOf(Pair, ",")  "}"
+  dictlit     = "{" NonemptyListOf<Pair, ",">  "}"
 
   escape      = "\\" ("\\" | "\"" | "n")          -- simple
               | "\\u{" hexDigit+ "}"              -- codepoint
