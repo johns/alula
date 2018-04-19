@@ -1,0 +1,10 @@
+function fibonacci: num position {
+  num result: 1
+  for: num i: 1, i < (position -> length), i++ {
+    result +: result
+  }
+  return: result
+}
+
+print: fibonacci: 5
+print: fibonacci: 10

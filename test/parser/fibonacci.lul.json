@@ -1,52 +1,115 @@
 {
-  "statements": [
+  "statements":[
     {
-      "id": "fibonacci",
-      "function": {
-        "id": "fibonacci",
-        "params": [ { "id": "n", "defaultExpression": null } ],
-        "body": [
-          {
-            "ids": [ "a", "b" ],
-            "initializers": [ { "value": 0 }, { "value": 1 } ]
-          },
-          {
-            "test": {"op": "<", "left": { "id": "b" }, "right": { "id": "n" } },
-            "body": [
-              {
-                "targets": [{"id": "a"}, {"id": "b"}],
-                "sources": [
-                  { "id": "b" },
-                  { "op": "+", "left": { "id": "a" }, "right": { "id": "b" }}
+      "function":{
+        "body":[
+          [
+            {
+              "ids":[
+                "result"
+              ],
+              "initializers":[
+                {
+                  "value":1
+                }
+              ]
+            },
+            {
+              "assign":"undefined",
+              "body":"undefined",
+              "decl":[
+                {
+                  "ids":[
+                    "i"
+                  ],
+                  "initializers":[
+                    [
+                      "NumericLiteral"
+                    ],
+                    [
+                      "BinaryExpression"
+                    ],
+                    [
+                      "UnaryExpression"
+                    ]
+                  ]
+                }
+              ],
+              "test":[
+                [
+                  {
+                    "sources":[
+                      "Array"
+                    ],
+                    "targets":[
+                      "Array"
+                    ]
+                  }
                 ]
+              ]
+            },
+            {
+              "returnValue":{
+                "id":"result"
               }
-            ]
-          },
-          { "returnValue": { "id": "a" } }
+            }
+          ]
+        ],
+        "id":"fibonacci",
+        "params":[
+          [
+            {
+              "defaultExpression":null,
+              "id":"position"
+            }
+          ]
         ]
-      }
+      },
+      "id":"fibonacci"
     },
     {
-      "call": {
-        "callee": {"id": "print"},
-        "args": [
-          {
-            "id": null,
-            "expression": {"callee": {"id": "fibonacci"}, "args": [{"id": null, "expression": {"value": 5}}]}
+      "sources":[
+        {
+          "args":[
+            {
+              "expression":{
+                "value":5
+              },
+              "id":null
+            }
+          ],
+          "callee":{
+            "id":"fibonacci"
           }
-        ]
-      }
+        }
+      ],
+      "targets":[
+        {
+          "id":"print"
+        }
+      ]
     },
     {
-      "call": {
-        "callee": {"id": "print"},
-        "args": [
-          {
-            "id": null,
-            "expression": {"callee": {"id": "fibonacci"}, "args": [{"id": null, "expression": {"value": 10}}]}
+      "sources":[
+        {
+          "args":[
+            {
+              "expression":{
+                "value":10
+              },
+              "id":null
+            }
+          ],
+          "callee":{
+            "id":"fibonacci"
           }
-        ]
-      }
+        }
+      ],
+      "targets":[
+        {
+          "id":"print"
+        }
+      ]
     }
   ]
 }
