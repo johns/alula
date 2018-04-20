@@ -1,4 +1,5 @@
-def f(x, y=5):
+function f: num x, num y: 5 {
     return
+}
 
-f(9, x: 1)
+f: (9, x: 1)
