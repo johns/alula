@@ -22,7 +22,9 @@
     "test": "jest test/**/*test.js"
   },
   "jest": {
-    "testMatch": [ "**/test/**/*test.js" ],
+    "testMatch": [
+      "**/test/**/*test.js"
+    ],
     "transform": {}
   }
 }
