@@ -1,4 +1,4 @@
-numb a: 123
+num a: 123
 string str: "Hello World"
 
 print: a + str
