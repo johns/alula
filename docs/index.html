@@ -8,20 +8,22 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>The alula Programming Language</title>
+    <title>alüla: The Programming Language</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/scrolling-nav.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
 
   </head>
 
   <body id="page-top">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="mainNav">
       <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="#page-top"><img class="mainLogo" src="alula.png"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,13 +32,19 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">About</a>
+              <a class="nav-link js-scroll-trigger" href="#about">
+                <div class="nav-text">About</div>
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#features">Features</a>
+              <a class="nav-link js-scroll-trigger" href="#features">
+                <div class="nav-text">Features</div>
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#examples">Examples</a>
+              <a class="nav-link js-scroll-trigger" href="#examples">
+                <div class="nav-text">Examples</div>
+              </a>
             </li>
           </ul>
         </div>
@@ -50,8 +58,10 @@
       <div class="center-page-caption">
         <div class="row full-width">
           <div class="col-xl-9 mx-auto">
-            <h1 class="mb-5">The alula Programming Language</h1>
-          </div>
+            <h1 class="mb-5">alüla</h1>
+            <h2 class="align-text-bottom">The Programming Language</h2>
+            <a class="btn btn-lg font-weight-bold btn-primary btn-outline-danger" href="https://github.com/johns/alula" role="button">alüla Repository</a>
+           </div>
         </div>
       </div>
     </div>
@@ -61,9 +71,9 @@
         <div class="row">
           <div class="col-lg-8 mx-auto">
             <h2>About</h2>
-            <p class="lead">Welcome to alula, the language that does away with the semicolon, but embraces the colon. alula is a static, strongly typed programming languages that focuses on parallelism and simplicity through the standardized use of the colon. alula takes inspiration from Python, with hints of Elm.</p>
+            <p class="lead">This is alüla, the language that does away with the semicolon, but embraces the colon. alüla is a static, strongly typed programming languages that focuses on parallelism and simplicity through the standardized use of the colon. alüla takes inspiration from Python and Elm.</p>
 
-						<p class="lead">In many programming language, the equal sign has many contextual uses. For example, in JavaScript, a single equal sign (=) is used to declare, while a double or triple equal sign (==/===) is for comparing. The overuse of such a character can cause unnecessary confusion. In alula, the equal sign is utilized, but only for the comparison of values. All declarations, statements, and function calls begin with a colon, allowing for an easier understanding for those unfamiliar with the language. In Layman's terms, anything that can be called to do something begins with a colon.</p>
+						<p class="lead">In many programming language, the equal sign has many contextual uses. For example, in JavaScript, a single equal sign (=) is used to declare, while a double or triple equal sign (==/===) is for different types of comparisons. The overuse of such a character can cause unnecessary confusion for beginner coders. In alüla, the equal sign is utilized, but only for the comparison of values. All declarations, statements, and function calls begin with a colon, allowing for an easier understanding for those unfamiliar with the language. In Layman's terms, anything that does something or is usable begins with a colon.</p>
           </div>
         </div>
       </div>
@@ -75,6 +85,7 @@
           <div class="col-lg-8 mx-auto">
             <h2>Features</h2>
             <br>
+            <h5> General </h5>
             <ul class="lead">
             	<li>All variable declarations, function calls, and and conditional statements require a colon to designate the beginning
 							<li>Any arguments are separated with a comma directly after the colon
@@ -87,7 +98,7 @@
             	<li>num numberVariable: 2
  							<li>bool booleanVariable: false
 							<li>string stringVariable: "This is text."
-							<li>list listOfVariables<type>: ["List", "of", "four", "variables"]
+							<li>list listOfVariables&lt;type>: ["List", "of", "four", "variables"]
 							<li>dict dictionaryOfVariables: {John: "Scott", J: 4, Olive: true}
 							<li>struct aStructure: {...}
 							<li>undefined
@@ -161,7 +172,7 @@ function closure: num x, num y {
   }
 }
 
-closureVariable: closure: 3, 2    
+closureVariable: closure: 3, 2
 closureVariable -> next
 	          	</code>
 	          </pre>
@@ -173,7 +184,7 @@ closureVariable -> next
     <!-- Footer -->
     <footer class="py-5 bg-dark">
       <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; alula 2018</p>
+        <p class="m-0 text-center text-white">Copyright &copy; alüla 2018</p>
       </div>
       <!-- /.container -->
     </footer>
