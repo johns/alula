@@ -1,6 +1,6 @@
-module.exports = class WhileStatement {
+module.exports = class ForStatement {
   constructor(decl, test, assign, body) {
-    Object.assign(this, { decl, test, assign, body });
+    Object.assign(this, { decl, test, assign, body});
   }
 
   analyze(context) {

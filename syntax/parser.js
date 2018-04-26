@@ -51,7 +51,10 @@ function unpack(a) {
 const astGenerator = grammar.createSemantics().addOperation('ast', {
   Program(body) { return new Program(body.ast()); },
   Stmt_simple(statement) { return statement.ast(); },
-  Stmt_for(_1, e, suite) { return new ForStatement(e.ast(), suite.ast()) },
+  Stmt_for(_1, e, _2, e2, _3, e3, suite) {
+    const conditions = [e.ast(), e2.ast(), e3.ast()];
+    return new ForStatement(conditions, suite.ast()) // probably wrong
+  },
   Stmt_while(_1, test, suite) { return new WhileStatement(test.ast(), suite.ast()); },
   Stmt_if(_1, firstTest, firstSuite, _2, moreTests, moreSuites, _3, lastSuite) {
     const tests = [firstTest.ast(), ...moreTests.ast()];
@@ -62,7 +65,6 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   Stmt_function(_1, id, _2, params, suite) {
     return new FunctionDeclaration(id.ast(), params.ast(), suite.ast());
   },
-  SimpleStmt_vardecl(_1, v, _2, e) { return new VariableDeclaration(v.ast(), e.ast()); },
   SimpleStmt_assign(v, _, e) { return new AssignmentStatement(v.ast(), e.ast()); },
   SimpleStmt_print(_, e) { return new PrintStatement(unpack(e.ast())) },
   SimpleStmt_break(_) { return new BreakStatement(); },
@@ -79,6 +81,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   Exp6_unary(e, expression) { return e.ast(), expression.ast(); },
   Exp7_parens(_1, expression, _2) { return expression.ast(); },
   Call(callee, _1, args) { return new Call(callee.ast(), args.ast()); },
+  VarDecl(_1, v, _2, e) { return new VariableDeclaration(v.ast(), e.ast()); },
   VarExp_subscripted(v, _1, e, _2) { return new SubscriptedExpression(v.ast(), e.ast()); },
   VarExp_simple(id) { return new IdentifierExpression(id.ast()); },
   Param(_1, id, _2, exp) { return new Parameter(id.ast(), unpack(exp.ast())); },

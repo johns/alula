@@ -4,18 +4,20 @@ alula {
 
   Stmt        =  SimpleStmt                             -- simple
               |  "function" id ":" Params? Suite        -- function
-              |  "for:" ListOf<SimpleStmt,","> Suite    -- for
+              |  "for:" VarDecl "," Exp "," Exp Suite    -- for
               |  "while:" Exp Suite                     -- while
               |  "if:" Exp Suite
                  (("else if:" Exp Suite)*)?
                  ("else:" Suite)?                  -- if
-  SimpleStmt  =  Type Ids ":" Exps                -- vardecl
+  SimpleStmt  =  VarDecl
               |  VarExps (":"| assignop) Exps     -- assign
               |  Call                             -- call
               |  "print:" Stmt                    -- print
               |  "break"                          -- break
               |  "return:" Exp?                   -- return
+              |	 Exp
   Suite       =  "{" Stmt* "}"
+
 
   Type        =  "string"                         -- string
               |  "num"                            -- number
@@ -54,8 +56,10 @@ alula {
   Pair        =  Exp ":" Exp
   Structpair  =  Type ":" id
 
-  Exps        =  NonemptyListOf<Exp, ",">
+  Exps        = NonemptyListOf<Exp, ","> 
+              | "(" Exps ")"  -- parens
   Ids         =  NonemptyListOf<id, ",">
+  VarDecl	  =	 Type Ids ":" (Exp | Exps)
   VarExp      =  VarExp "[" Exp "]"               -- subscripted
               |  id                               -- simple
   VarExps     =  NonemptyListOf<VarExp, ",">
