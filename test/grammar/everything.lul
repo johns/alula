@@ -19,8 +19,9 @@ function average: list[num] nums {
 function oddOrEven: num number {
   if: number % 2 == 0 {
     return: "even"
-  } else:
+  } else: {
     return: "odd"
+  }
 }
 
 

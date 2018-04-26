@@ -8,7 +8,7 @@ alula {
               |  "while:" Exp Suite                     -- while
               |  "if:" Exp Suite
                  (("else if:" Exp Suite)*)?
-                 ("else:" Stmt)?                  -- if
+                 ("else:" Suite)?                  -- if
   SimpleStmt  =  Type Ids ":" Exps                -- vardecl
               |  VarExps (":"| assignop) Exps     -- assign
               |  Call                             -- call

@@ -1,5 +1,5 @@
 function f: num x, num y: 5 {
-    return
+    return:
 }
 
-f: (9, x: 1)
+f: 9, x: 1
