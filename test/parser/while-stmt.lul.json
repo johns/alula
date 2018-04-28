@@ -1,0 +1,26 @@
+{
+  "statements":
+    [
+      {
+        "ids": ["i"],
+        "initializers": {"value": 4},
+        "type": "num"},
+        {"body": [
+          [{"sources":
+              [{"value": "\"It Works!\""}],
+              "targets": [{"id": "print"}]
+            },
+            {"sources":
+              [{"value": 1}],
+              "targets": [{"id": "i"}]}
+            ]
+          ],
+          "test":
+            {
+              "left": {"id": "i"},
+              "op": ">",
+              "right": {"value": 0}
+          }
+        }
+      ]
+    }
