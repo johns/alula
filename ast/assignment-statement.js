@@ -1,5 +1,12 @@
 module.exports = class AssignmentStatement {
   constructor(targets, op, sources) {
+    if (Array.isArray(targets) && targets.length > 0 && Array.isArray(targets[0])) {
+      targets = targets[0];
+    }
+    if (Array.isArray(sources) && sources.length > 0 && Array.isArray(sources[0])) {
+      sources = sources[0];
+    }
+
     Object.assign(this, { targets, op, sources });
   }
 
