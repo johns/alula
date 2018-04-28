@@ -84,7 +84,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   Exp1_binary(left, op, right) { return new BinaryExpression(op.ast(), left.ast(), right.ast()); },
   Exp2_binary(left, op, right) { return new BinaryExpression(op.ast(), left.ast(), right.ast()); },
   Exp3_binary(left, op, right) { return new BinaryExpression(op.ast(), left.ast(), right.ast()); },
-  Exp4_binary(id, op, operand) { return new UnaryExpression(id.ast(), op.ast(), operand.ast()); },
+  Exp4_binary(id, op, operand) { return new BinaryExpression(id.ast(), op.ast(), operand.ast()); },
   Exp5_unary(expression, e) { return new UnaryExpression(expression.ast(), e.ast()); },
   Exp6_unary(e, expression) { return e.ast(), expression.ast(); },
   Exp7_parens(_1, expression, _2) { return expression.ast(); },
