@@ -1,0 +1,23 @@
+{"statements":
+  [
+    {
+      "alternate": null,
+      "cases": [
+        {"body": [
+          [{"sources": [{"value": "\"IF THIS\""}],
+           "targets": [{"id": "print"}]}]
+        ],
+        "test":
+          {
+            "left": {"value": 4},
+            "op": "==",
+            "right": {"value": 4}}
+          },
+        {
+          "body": [],
+          "test": []
+        }
+      ]
+    }
+  ]
+}
