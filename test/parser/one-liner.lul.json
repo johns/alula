@@ -1,12 +1,1 @@
-{
-  "statements": [
-    {
-      "sources": [
-        {"value": 42}
-      ],
-      "targets": [
-        {"id": "print"}
-      ]
-    }
-  ]
-}
+{"statements": [{"op": ":", "sources": [{"value": 42}], "targets": [{"id": "print"}]}]}
