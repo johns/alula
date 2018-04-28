@@ -1,6 +1,7 @@
 module.exports = class StructLiteral {
-  constructor(value) {
-    this.value = value;
+  constructor(id, body) {
+    this.id = id;
+    this.body = body;
   }
 
   analyze() { // eslint-disable-line class-methods-use-this

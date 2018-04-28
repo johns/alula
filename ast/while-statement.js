@@ -6,9 +6,11 @@ module.exports = class WhileStatement {
   }
 
   analyze(context) {
-    this.test.analyze(context);
-    const bodyContext = context.createChildContextForLoop();
-    this.body.forEach(s => s.analyze(bodyContext));
+    const blockContext = context.createChildContextForBlock();
+    this.condition.analyze(context);
+    context.assertTypesAreEqual(this.condition.type, TYPE.BOOLEAN);
+    this.block.analyze(blockContext);
+    return this;
   }
 
   optimize() {

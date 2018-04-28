@@ -42,8 +42,17 @@ const grammar = ohm.grammar(fs.readFileSync('./syntax/alula.ohm'));
 
 // Ohm turns `x?` into either [x] or [], which we should clean up for our AST.
 
+
 function unpack(a) {
   return a.length === 0 ? null : a[0];
+}
+
+function joinParams(param, params) {
+  const parameter = Array.isArray(param.ast()) ? param.ast() : [param.ast()];
+  if (unpack(params) !== null) {
+    return parameter.concat(unpack(params));
+  }
+  return parameter;
 }
 
 /* eslint-disable no-unused-vars */
@@ -91,7 +100,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   numlit(_1, _2, _3, _4, _5, _6) { return new NumericLiteral(+this.sourceString); },
   strlit(_1, chars, _6) { return new StringLiteral(this.sourceString); },
   Listlit(_1, e, _2) { return new ListLiteral(unpack(e.ast()))},
-  Dictlit(_1, e, _2) { return new DictLiteral(unpack(e.ast()))},
+  Dictlit(_1, e, _2) { return new DictLiteral(upack(e.ast()))},
   Structlit(_1, e, _2) { return new StructLiteral(unpack(e.ast()))},
   id(_1, _2) { return this.sourceString; },
   _terminal() { return this.sourceString; },

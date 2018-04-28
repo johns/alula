@@ -56,7 +56,7 @@ alula {
   Pair        =  Exp ":" Exp
   Structpair  =  Type ":" id
 
-  Exps        = NonemptyListOf<Exp, ","> 
+  Exps        = NonemptyListOf<Exp, ",">
               | "(" Exps ")"  -- parens
   Ids         =  NonemptyListOf<id, ",">
   VarDecl	  =	 Type Ids ":" (Exp | Exps)
