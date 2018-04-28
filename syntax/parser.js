@@ -73,7 +73,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   Stmt_function(_1, id, _2, params, suite) {
     return new FunctionDeclaration(id.ast(), params.ast(), suite.ast());
   },
-  SimpleStmt_assign(v, _, e) { return new AssignmentStatement(v.ast(), e.ast()); },
+  SimpleStmt_assign(v, op, e) { return new AssignmentStatement(v.ast(), op.ast(), e.ast()); },
   SimpleStmt_print(_, e) { return new PrintStatement(unpack(e.ast())) },
   SimpleStmt_break(_) { return new BreakStatement(); },
   SimpleStmt_return(_, e) { return new ReturnStatement(unpack(e.ast())); },

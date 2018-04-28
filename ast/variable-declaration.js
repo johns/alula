@@ -7,15 +7,13 @@ module.exports = class VariableDeclaration {
   // We will make the variable objects later, because we have to add them to a
   // semantic analysis context.
   constructor(type, ids, initializers) {
-    console.log('IDS*****', ids, 'INITIALIZERS*****', initializers, 'TYPE***', type);
-    console.log('IDS length', ids.length, ' ******** INIT length', initializers.size);
     this.type = type;
     this.ids = ids;
-    this.initializers = initializers;
+    this.initializers = Array.isArray(initializers) ? initializers : [initializers];
   }
 
   analyze(context) {
-    if (this.ids.length !== this.initializers.size) {
+    if (this.ids.length !== this.initializers.length) {
       throw new Error('Number of variables does not equal number of initializers');
     }
 
