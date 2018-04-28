@@ -8,7 +8,6 @@ module.exports = class WhileStatement {
   analyze(context) {
     const blockContext = context.createChildContextForBlock();
     this.condition.analyze(context);
-    context.assertTypesAreEqual(this.condition.type, TYPE.BOOLEAN);
     this.block.analyze(blockContext);
     return this;
   }
