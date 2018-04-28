@@ -7,9 +7,11 @@
             "ids":[
               "result"
             ],
-            "initializers":{
-              "value":1
-            },
+            "initializers":[
+              {
+                "value":1
+              }
+            ],
             "type":"num"
           },
           {
@@ -37,9 +39,11 @@
               "ids":[
                 "i"
               ],
-              "initializers":{
-                "value":1
-              },
+              "initializers":[
+                {
+                  "value":1
+                }
+              ],
               "type":"num"
             },
             "test":{
