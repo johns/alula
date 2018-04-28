@@ -1,14 +1,23 @@
+const TYPE = require("./type");
+
 module.exports = class Variable {
-  constructor(type, id) {
-    this.type = type;
-    this.id = id;
-  }
+  constructor(declaredType, id, exp) {
+        this.declaredType = declaredType;
+        this.id = id;
+        this.exp = exp;
+    }
 
-  analyze(/* context */) { // eslint-disable-line class-methods-use-this
-    // Someday we'll have types and we can do something here...
-  }
+    analyze(context) {
+        this.exp.analyze(context);
+        if (!this.declaredType.equals(this.exp.type)) {
+            throw new Error("Declared type does not match the evaluated type.");
+        }
+        context.checkIfVariableIsAlreadyDeclared(this.id);
+        context.addVariable(this.id, this.exp);
+    }
 
-  optimize() {
-    return this;
-  }
+    toString() {
+        const declString = `(Decl let ${this.type} ${this.id} = ${this.exp})`;
+        return declString;
+    }
 };

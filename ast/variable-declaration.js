@@ -3,23 +3,32 @@ const Variable = require('./variable');
 // A VariableDeclaration declares one or more variables. The variable objects
 // will be created during semantic analysis.
 module.exports = class VariableDeclaration {
-  constructor(declaredType, id, exp) {
-        this.declaredType = declaredType;
-        this.id = id;
-        this.exp = exp;
+  // During syntax analysis (parsing), all we do is collect the variable names.
+  // We will make the variable objects later, because we have to add them to a
+  // semantic analysis context.
+  constructor(type, ids, initializers) {
+    console.log('IDS*****', ids, 'INITIALIZERS*****', initializers, 'TYPE***', type);
+    this.type = type;
+    this.ids = ids;
+    this.initializers = initializers;
+  }
+
+  analyze(context) {
+    if (this.ids.length !== this.initializers.length) {
+      throw new Error('Number of variables does not equal number of initializers');
     }
 
-    analyze(context) {
-        this.exp.analyze(context);
-        if (!this.declaredType.equals(this.exp.type)) {
-            throw new Error("Declared type does not match the evaluated type.");
-        }
-        context.checkIfVariableIsAlreadyDeclared(this.id);
-        context.addVariable(this.id, this.exp);
-    }
+    // We don't want the declared variables to come into scope until after the
+    // declaration line, so we will analyze all the initializing expressions
+    // first.
+    this.initializers.forEach(e => e.analyze(context));
 
-    toString() {
-        const declString = `(Decl let ${this.type} ${this.id} = ${this.exp})`;
-        return declString;
-    }
+    // Now we can create actual variable objects and add to the current context.
+    this.variables = this.ids.map(id => new Variable(id));
+    this.variables.forEach(variable => context.add(variable));
+  }
+
+  optimize() {
+    return this;
+  }
 };

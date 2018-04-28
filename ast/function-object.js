@@ -1,5 +1,11 @@
 module.exports = class FunctionObject {
   constructor(id, params, body) {
+    if (params.length > 0 && Array.isArray(params[0])) {
+      params = params[0];
+    }
+    if (Array.isArray(body) && body.length > 0 && Array.isArray(body[0])) {
+      body = body[0];
+    }
     Object.assign(this, { id, params, body });
   }
 
