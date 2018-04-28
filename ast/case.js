@@ -1,5 +1,12 @@
 module.exports = class Case {
   constructor(test, body) {
+    if (Array.isArray(test) && test.length > 0 && Array.isArray(test[0])) {
+      test = test[0];
+    }
+    if (Array.isArray(body) && body.length > 0 && Array.isArray(body[0])) {
+      body = body[0];
+    }
+
     Object.assign(this, { test, body });
   }
 
