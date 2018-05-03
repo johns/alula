@@ -16,13 +16,13 @@ In many programming language, the equal sign has many contextual uses. For examp
 | alula                     | JavaScript         | Description   |
 | ------------------------- |:----------------:| ---------:|
 | type name: value   | var name = value; | Variable Declarations|
-| function funcName: arg1, arg2 {..} | function funcName(arg1, arg2) {..} | Function call |
+| function funcName: arg1, arg2 {..} | function funcName(arg1, arg2) {..} | Function Declaration |
 | if: conditional {...} | if (conditional) {...}           | if-statements |
 | while: conditional {...}| while(conditional) {...} | while-loop |
 | for: num i:0, i < max, i++ {...} | for (var i = 0; i < max; i++) {...} | for-loop |
 | return: 0 | return 0; | return statement |
 | variable -> getValue: 12 -> getMax -> toString | variable.getValueAt(12).getMax().toString() | Chain-able Functions
-| num answer: sum: 5, 3 | let answer = sum(5,3) | Single Functions
+| num answer: sum: 5, 3 | let answer = sum(5,3) | Function Call
 | # single line comment | // single line comment | Single line comment |
 | #: block comment :# | /\* block comment */ | Multiple line comment |
 
@@ -37,7 +37,7 @@ In many programming language, the equal sign has many contextual uses. For examp
   * undefined
 
 ### Examples
-#### Hello World
+##### Hello World
 Basic program that prints "Hello World"
 ```
 print: "Hello World"
