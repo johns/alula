@@ -10,9 +10,9 @@ alula {
                  (("else if:" Exp Suite)*)?
                  ("else:" Suite)?                 -- if
   SimpleStmt  =  VarDecl
-              |  VarExps (":"| assignop) Exps     -- assign
               |  Call                             -- call
-              |  "print:" Stmt                    -- print
+              |  VarExps (":"| assignop) Exps     -- assign
+              |  "print:" Exp                    -- print
               |  "break"                          -- break
               |  "return:" Exp?                   -- return
               |	 Exp
@@ -53,7 +53,7 @@ alula {
               |  "undefined"
               |  "(" Exp ")"                      -- parens
 
-  Call           =  VarExp ":" Args
+  Call           =  VarExp "<-" Args
   Pair           =  Exp ":" Exp
   Structpair     =  id ":" Exp
   Binding        =  Type ":" id
@@ -71,7 +71,7 @@ alula {
   Arg         =  (id ":")? Exp
   Args        =  ListOf<Arg, ",">
 
-  keyword     =  ("while" | "if" | "else if" | "else" | "function" | "string"
+  keyword     =  ("while" | "if" | "else if" | "else" | "function" | "string" | "print"
               | "num" | "bool" | "list" | "dict" | "struct" | "undefined" | "return"
               |  "break" | "and" | "or" | "not" | "true" | "false" | "for") ~idrest
   id          =  ~keyword ("_" | letter) idrest*
