@@ -1,10 +1,9 @@
 const TYPE = require("./type");
 
 module.exports = class Variable {
-  constructor(declaredType, id, exp) {
+  constructor(id, declaredType) {
         this.declaredType = declaredType;
         this.id = id;
-        this.exp = exp;
     }
 
     analyze(context) {
@@ -16,8 +15,4 @@ module.exports = class Variable {
         context.addVariable(this.id, this.exp);
     }
 
-    toString() {
-        const declString = `(Decl let ${this.type} ${this.id} = ${this.exp})`;
-        return declString;
-    }
 };

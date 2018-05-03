@@ -7,7 +7,6 @@ module.exports = class PrintStatement {
     if (this.printValue) {
       this.printValue.analyze(context);
     }
-    context.assertInFunction('Print statement outside function');
   }
 
   optimize() {
