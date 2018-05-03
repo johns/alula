@@ -27,13 +27,13 @@ In many programming language, the equal sign has many contextual uses. For examp
 | #: block comment :# | /\* block comment */ | Multiple line comment |
 
 
-* alula contains 7 types. They are declared as follows
-  * num numberVariable: 2
-  * bool booleanVariable: false
-  * string stringVariable: "This is text."
-  * list listOfVariables&lt;type>: ["List", "of", "four", "variables"]
-  * dict dictionaryOfVariables: {John: "Scott", J: 4, Olive: true}
-  * struct aStructure: {...}
+* alula contains 7 types, for example:
+  * num graduationYear: 2019
+  * bool operatingSytemsIsFun: true
+  * string favoriteInstructor: "Forns"
+  * list[string] hobbies: ["Skiing", "Surfing", "Basketball"]
+  * dict{string, num} nicknames: {"John": 51, "J": 4, "Olive": 6}
+  * struct{num: age, string: breed} fluffy: {age: 5, breed: "Pitbull"}
   * undefined
 
 ### Examples
