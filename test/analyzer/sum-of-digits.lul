@@ -8,4 +8,4 @@ function sum_of_digits: num n {
     }
 }
 
-print: sum_of_digits: 8835299
+print: sum_of_digits <- 8835299

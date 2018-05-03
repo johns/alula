@@ -1,0 +1,5 @@
+function f: num a, num b, num c, num d, num e {
+    return:
+}
+
+f <- 10, 40, 0, 30

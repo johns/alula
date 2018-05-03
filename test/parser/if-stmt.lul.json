@@ -1,1 +1,1 @@
-{"statements": [{"alternate": null, "cases": [{"body": [{"op": ":", "sources": [{"value": "\"IF THIS\""}], "targets": [{"id": "print"}]}], "test": {"left": {"value": 4}, "op": "==", "right": {"value": 4}}}, {"body": [], "test": []}]}]}
+{"statements": [{"alternate": null, "cases": [{"body": [{"printValue": {"value": "\"IF THIS\""}}], "test": {"left": {"value": 4}, "op": "==", "right": {"value": 4}}}, {"body": [], "test": []}]}]}

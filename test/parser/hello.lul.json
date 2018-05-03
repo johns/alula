@@ -1,1 +1,1 @@
-{"statements": [{"op": ":", "sources": [{"value": "\"hello\""}], "targets": [{"id": "print"}]}]}
+{"statements": [{"printValue": {"value": "\"hello\""}}]}

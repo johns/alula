@@ -1,5 +1,0 @@
-function f: num a, num b, num c, num d: 2, num e: 3 {
-    return:
-}
-
-f: a:10, e: 40, c: 0, b: 30
