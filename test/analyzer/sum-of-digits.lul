@@ -1,10 +1,10 @@
 function sum_of_digits: num n {
     if: n < 0 {
-        return: sum_of_digits: -n
+        return: sum_of_digits <- -n
     } else if: n < 10 {
         return: n
     } else: {
-        return: (sum_of_digits: n / 10) + (n % 10)
+        return: (sum_of_digits <- n / 10) + (n % 10)
     }
 }
 

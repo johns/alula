@@ -9,7 +9,7 @@ module.exports = class Variable {
     analyze(context) {
         this.exp.analyze(context);
         if (!this.declaredType.equals(this.exp.type)) {
-            throw new Error("Declared type does not match the evaluated type.");
+            throw new Error('Declared type does not match the evaluated type.');
         }
         context.checkIfVariableIsAlreadyDeclared(this.id);
         context.addVariable(this.id, this.exp);
