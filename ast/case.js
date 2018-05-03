@@ -1,7 +1,7 @@
 module.exports = class Case {
   constructor(test, body) {
     if (Array.isArray(test) && test.length > 0 && Array.isArray(test[0])) {
-      test = test[0];
+      test = [test];
     }
     if (Array.isArray(body) && body.length > 0 && Array.isArray(body[0])) {
       body = body[0];
@@ -11,6 +11,7 @@ module.exports = class Case {
   }
 
   analyze(context) {
+    //console.log("*******", this.test, "*******");
     this.test.analyze(context);
     const bodyContext = context.createChildContextForBlock();
     this.body.forEach(s => s.analyze(bodyContext));
