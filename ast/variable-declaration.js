@@ -13,6 +13,7 @@ module.exports = class VariableDeclaration {
   }
 
   analyze(context) {
+    console.log("******", this.ids, "*****", this.initializers, "******");
     if (this.ids.length !== this.initializers.length) {
       throw new Error('Number of variables does not equal number of initializers');
     }
