@@ -1,5 +1,5 @@
 num i: 4
 while: i > 0 {
   print: "It Works!"
-  i -: 1
+  i: i - 1
 }
