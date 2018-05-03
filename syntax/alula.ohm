@@ -4,11 +4,11 @@ alula {
 
   Stmt        =  SimpleStmt                             -- simple
               |  "function" id ":" Params? Suite        -- function
-              |  "for:" VarDecl "," Exp "," Exp Suite    -- for
+              |  "for:" VarDecl "," Exp "," Exp Suite   -- for
               |  "while:" Exp Suite                     -- while
               |  "if:" Exp Suite
                  (("else if:" Exp Suite)*)?
-                 ("else:" Suite)?                  -- if
+                 ("else:" Suite)?                 -- if
   SimpleStmt  =  VarDecl
               |  VarExps (":"| assignop) Exps     -- assign
               |  Call                             -- call
@@ -24,7 +24,7 @@ alula {
               |  "bool"                           -- boolean
               |  "list" "[" Type "]"              -- list
               |  "dict" "{" Type "," Type "}"     -- dictionary
-              |  "struct" "{" (Type ":" id)* "}"  -- struct
+              |  "struct" "{" StructBindings "}"  -- struct
               |  "undefined"                      -- undefined
 
   Exp         =  Exp "or" Exp1                    -- or
@@ -50,11 +50,14 @@ alula {
               |  Structlit
               |  Call
               |  VarExp
+              |  "undefined"
               |  "(" Exp ")"                      -- parens
 
-  Call        =  VarExp ":" Args
-  Pair        =  Exp ":" Exp
-  Structpair  =  Type ":" id
+  Call           =  VarExp ":" Args
+  Pair           =  Exp ":" Exp
+  Structpair     =  id ":" Exp
+  Binding        =  Type ":" id
+  StructBindings = ListOf<Binding, ",">
 
   Exps        = NonemptyListOf<Exp, ",">
               | "(" Exps ")"  -- parens

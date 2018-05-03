@@ -1,0 +1,6 @@
+num x: 100
+list[num] q: [x*y, 10, -200]
+dict{string, string} d: undefined
+# struct{num: w} z: {w: 1}
+
+d: {"ca": "sacramento", "hi": "honolulu", "or": "salem"}
