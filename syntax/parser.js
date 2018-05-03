@@ -49,16 +49,7 @@ function unpack(a) {
   return a.length === 0 ? null : a[0];
 }
 
-function joinParams(param, params) {
-  const parameter = Array.isArray(param.ast()) ? param.ast() : [param.ast()];
-  if (unpack(params) !== null) {
-    return parameter.concat(unpack(params));
-  }
-  return parameter;
-}
-
 /* eslint-disable no-unused-vars */
-
 const astGenerator = grammar.createSemantics().addOperation('ast', {
   Program(body) { return new Program(body.ast()); },
   Stmt_simple(statement) { return statement.ast(); },
@@ -76,22 +67,22 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
     return new FunctionDeclaration(id.ast(), params.ast(), suite.ast());
   },
   SimpleStmt_assign(v, op, e) { return new AssignmentStatement(v.ast(), op.ast(), e.ast()); },
-  SimpleStmt_print(_, e) { return new PrintStatement(unpack(e.ast())) },
+  SimpleStmt_print(_, e) { return new PrintStatement(e.ast()); },
   SimpleStmt_break(_) { return new BreakStatement(); },
   SimpleStmt_return(_, e) { return new ReturnStatement(unpack(e.ast())); },
   SimpleStmt_call(c) { return new CallStatement(c.ast()); },
   Suite(_1, statement, _2) { return [statement.ast()]; },
 
-  Type_string(_) {return Type.STRING},
-  Type_number(_) {return Type.NUM},
-  Type_boolean(_) {return Type.BOOL},
-  Type_list(_1, _2, elementType, _3) { return new ListType(elementType.ast()) },
+  Type_string(_) { return Type.STRING; },
+  Type_number(_) { return Type.NUM; },
+  Type_boolean(_) { return Type.BOOL; },
+  Type_list(_1, _2, elementType, _3) { return new ListType(elementType.ast()); },
   Type_dictionary(_1, _2, keyType, _3, valueType, _4) {
     return new DictType(keyType.ast(), valueType.ast());
   },
-  Type_struct(_1, _2, bindings, _3) { throw new Error("Structs not done yet"); },
-  Type_undefined(_) {return Type.UNDEFINED},
-  Pair(key, _1, value) { return new Pair(key.ast(), value.ast()) },
+  Type_struct(_1, _2, bindings, _3) { throw new Error('Structs not done yet'); },
+  Type_undefined(_) { return Type.UNDEFINED; },
+  Pair(key, _1, value) { return new Pair(key.ast(), value.ast()); },
 
   Exp_or(left, op, right) { return new BinaryExpression(op.ast(), left.ast(), right.ast()); },
   Exp_and(left, op, right) { return new BinaryExpression(op.ast(), right.ast()); },
@@ -100,7 +91,7 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   Exp3_binary(left, op, right) { return new BinaryExpression(op.ast(), left.ast(), right.ast()); },
   Exp4_binary(id, op, operand) { return new BinaryExpression(id.ast(), op.ast(), operand.ast()); },
   Exp5_unary(expression, e) { return new UnaryExpression(expression.ast(), e.ast()); },
-  Exp6_unary(e, expression) { return e.ast(), expression.ast(); },
+  Exp6_unary(e, expression) { return new UnaryExpression(expression.ast(), e.ast()); },
   Exp7_parens(_1, expression, _2) { return expression.ast(); },
   Call(callee, _1, args) { return new Call(callee.ast(), args.ast()); },
   VarDecl(t, v, _2, e) { return new VariableDeclaration(t.ast(), v.ast(), e.ast()); },
@@ -113,9 +104,9 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   boollit(_) { return new BooleanLiteral(!!this.sourceString); },
   numlit(_1, _2, _3, _4, _5, _6) { return new NumericLiteral(+this.sourceString); },
   strlit(_1, chars, _6) { return new StringLiteral(this.sourceString); },
-  Listlit(_1, e, _2) { return new ListLiteral(e.ast())},
-  Dictlit(_1, e, _2) { return new DictLiteral(e.ast())},
-  Structlit(_1, e, _2) { return new StructLiteral(unpack(e.ast()))},
+  Listlit(_1, e, _2) { return new ListLiteral(e.ast()); },
+  Dictlit(_1, e, _2) { return new DictLiteral(e.ast()); },
+  Structlit(_1, e, _2) { return new StructLiteral(e.ast()); },
   id(_1, _2) { return this.sourceString; },
   _terminal() { return this.sourceString; },
 });
