@@ -1,3 +1,4 @@
+const util = require('util');
 const Variable = require('./variable');
 
 // A VariableDeclaration declares one or more variables. The variable objects
@@ -13,7 +14,6 @@ module.exports = class VariableDeclaration {
   }
 
   analyze(context) {
-    console.log("******", this.ids, "*****", this.initializers, "******");
     if (this.ids.length !== this.initializers.length) {
       throw new Error('Number of variables does not equal number of initializers');
     }
@@ -24,7 +24,8 @@ module.exports = class VariableDeclaration {
     this.initializers.forEach(e => e.analyze(context));
 
     // Now we can create actual variable objects and add to the current context.
-    this.variables = this.ids.map(id => new Variable(id));
+    this.variables = this.ids.map(id => new Variable(id, this.type));
+    console.log(`Adding ${util.inspect(this.variables)}`)
     this.variables.forEach(variable => context.add(variable));
   }
 

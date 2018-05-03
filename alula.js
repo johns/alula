@@ -12,14 +12,20 @@ const fs = require('fs');
 const util = require('util');
 const parse = require('./syntax/parser');
 
+/* eslint-disable no-console */
 fs.readFile(argv._[0], 'utf-8', (err, text) => {
   if (err) {
     console.error(err);
     return;
   }
-  let program = parse(text);
+  const program = parse(text);
   if (argv.a) {
     console.log(util.inspect(program, { depth: null }));
     return;
   }
+  program.analyze();
+  if (argv.i) {
+    console.log(util.inspect(program, { depth: null }));
+  }
 });
+/* eslint-enable no-console */
