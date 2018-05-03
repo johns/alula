@@ -37,6 +37,8 @@ const StringLiteral = require('../ast/string-literal');
 const ListLiteral = require('../ast/list-literal');
 const DictLiteral = require('../ast/dict-literal');
 const StructLiteral = require('../ast/struct-literal');
+const { Type, DictType, ListType } = require('../ast/type');
+const Pair = require('../ast/pair');
 
 const grammar = ohm.grammar(fs.readFileSync('./syntax/alula.ohm'));
 
@@ -79,6 +81,18 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   SimpleStmt_return(_, e) { return new ReturnStatement(unpack(e.ast())); },
   SimpleStmt_call(c) { return new CallStatement(c.ast()); },
   Suite(_1, statement, _2) { return [statement.ast()]; },
+
+  Type_string(_) {return Type.STRING},
+  Type_number(_) {return Type.NUM},
+  Type_boolean(_) {return Type.BOOL},
+  Type_list(_1, _2, elementType, _3) { return new ListType(elementType.ast()) },
+  Type_dictionary(_1, _2, keyType, _3, valueType, _4) {
+    return new DictType(keyType.ast(), valueType.ast());
+  },
+  Type_struct(_1, _2, bindings, _3) { throw new Error("Structs not done yet"); },
+  Type_undefined(_) {return Type.UNDEFINED},
+  Pair(key, _1, value) { return new Pair(key.ast(), value.ast()) },
+
   Exp_or(left, op, right) { return new BinaryExpression(op.ast(), left.ast(), right.ast()); },
   Exp_and(left, op, right) { return new BinaryExpression(op.ast(), right.ast()); },
   Exp1_binary(left, op, right) { return new BinaryExpression(op.ast(), left.ast(), right.ast()); },
@@ -99,8 +113,8 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   boollit(_) { return new BooleanLiteral(!!this.sourceString); },
   numlit(_1, _2, _3, _4, _5, _6) { return new NumericLiteral(+this.sourceString); },
   strlit(_1, chars, _6) { return new StringLiteral(this.sourceString); },
-  Listlit(_1, e, _2) { return new ListLiteral(unpack(e.ast()))},
-  Dictlit(_1, e, _2) { return new DictLiteral(upack(e.ast()))},
+  Listlit(_1, e, _2) { return new ListLiteral(e.ast())},
+  Dictlit(_1, e, _2) { return new DictLiteral(e.ast())},
   Structlit(_1, e, _2) { return new StructLiteral(unpack(e.ast()))},
   id(_1, _2) { return this.sourceString; },
   _terminal() { return this.sourceString; },
