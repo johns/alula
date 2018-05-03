@@ -1,3 +1,4 @@
+
 module.exports = class BinaryExpression {
   constructor(op, left, right) {
     Object.assign(this, { op, left, right });
@@ -6,6 +7,10 @@ module.exports = class BinaryExpression {
   analyze(context) {
     this.left.analyze(context);
     this.right.analyze(context);
+
+    if (this.left.type !== this.right.type) {
+      throw new Error('TypeError: type mismatch');
+    }
   }
 
   optimize() {
