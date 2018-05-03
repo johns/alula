@@ -8,7 +8,7 @@ module.exports = class VariableDeclaration {
   // semantic analysis context.
   constructor(type, ids, initializers) {
     this.type = type;
-    this.ids = ids;
+    this.ids = Array.isArray(ids) ? ids : [ids];
     this.initializers = Array.isArray(initializers) ? initializers : [initializers];
   }
 

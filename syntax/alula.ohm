@@ -59,7 +59,7 @@ alula {
   Exps        = NonemptyListOf<Exp, ",">
               | "(" Exps ")"  -- parens
   Ids         =  NonemptyListOf<id, ",">
-  VarDecl	  =	 Type id ":" Exp
+  VarDecl	    =	 Type id ":" Exp
   VarExp      =  VarExp "[" Exp "]"               -- subscripted
               |  id                               -- simple
   VarExps     =  NonemptyListOf<VarExp, ",">
