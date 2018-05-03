@@ -1,10 +1,10 @@
-# alula
+# alüla
 
-![alula logo](alula.png)
+![alüla logo](alüla.png)
 
-Welcome to alula, the language that does away with the semicolon, but embraces the colon. alula is a static, strongly typed programming languages that focuses on parallelism and simplicity through the standardized use of the colon. alula takes inspiration from Python, with hints of Elm.
+Welcome to alüla, the language that does away with the semicolon, but embraces the colon. alüla is a static, strongly typed programming languages that focuses on parallelism and simplicity through the standardized use of the colon. alüla takes inspiration from Python, with hints of Elm.
 
-In many programming language, the equal sign has many contextual uses. For example, in JavaScript, a single equal sign (=) is used to declare, while a double or triple equal sign (==/===) is for comparing. The overuse of such a character can cause unnecessary confusion. In alula, the equal sign is utilized, but only for the comparison of values. All declarations, statements, and function calls begin with a colon, allowing for an easier understanding for those unfamiliar with the language. In Layman's terms, anything that can be called to do something begins with a colon.
+In many programming languages, the equal sign has many contextual uses. For example, in JavaScript, a single equal sign (=) is used to declare, while a double or triple equal sign (==/===) is for comparing. The overuse of such a character can cause unnecessary confusion. In alüla, the equal sign is utilized, but only for the comparison of values. All declarations, statements, and function calls begin with a colon, allowing for an easier understanding for those unfamiliar with the language. In Layman's terms, anything that can be called to do something begins with a colon.
 
 ### Features
 * All variable declarations, function calls, and and conditional statements require a colon to designate the beginning
@@ -13,7 +13,7 @@ In many programming language, the equal sign has many contextual uses. For examp
 * Parenthesis are exclusively used for logic and arithmetic precedence
 * Parameters for functions occur after the colon, but before the curly brackets. Multiple parameters are separated with commas
 
-| alula                     | JavaScript         | Description   |
+| alüla                     | JavaScript         | Description   |
 | ------------------------- |:----------------:| ---------:|
 | type name: value   | var name = value; | Variable Declarations|
 | function funcName: arg1, arg2 {..} | function funcName(arg1, arg2) {..} | Function Declaration |
@@ -27,9 +27,9 @@ In many programming language, the equal sign has many contextual uses. For examp
 | #: block comment :# | /\* block comment */ | Multiple line comment |
 
 
-* alula contains 7 types, for example:
+* alüla contains 7 types, for example:
   * num graduationYear: 2019
-  * bool operatingSytemsIsFun: true
+  * bool operatingSystemsIsFun: true
   * string favoriteInstructor: "Forns"
   * list[string] hobbies: ["Skiing", "Surfing", "Basketball"]
   * dict{string, num} nicknames: {"John": 51, "J": 4, "Olive": 6}
