@@ -14,7 +14,9 @@ const Parameter = require('../ast/parameter');
 
 class Context {
   constructor({ parent = null, currentFunction = null, inLoop = false } = {}) {
-    Object.assign(this, { parent, currentFunction, inLoop, declarations: Object.create(null) });
+    Object.assign(this, {
+      parent, currentFunction, inLoop, declarations: Object.create(null),
+    });
   }
 
   createChildContextForFunctionBody(currentFunction) {
@@ -44,7 +46,6 @@ class Context {
   // allowed. Note that if we allowed overloading, this method would have to
   // be a bit more sophisticated.
   add(entity) {
-
     if (entity.id in this.declarations) {
       throw new Error(`Identitier ${entity.id} already declared in this scope`);
     }
