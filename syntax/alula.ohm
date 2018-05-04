@@ -38,9 +38,9 @@ alüla {
               |  Exp4
   Exp4        =  id "->" Exp4                     -- binary
               |  Exp5
-  Exp5        =  Exp5 (increment | decrement)     -- unary
+  Exp5        =  Exp5 (increment | decrement)     -- postfix
               |  Exp6
-  Exp6        =  prefixop Exp7                    -- unary
+  Exp6        =  prefixop Exp7                    -- prefix
               |  Exp7
   Exp7        =  boollit
               |  numlit

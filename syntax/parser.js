@@ -25,7 +25,8 @@ const WhileStatement = require('../ast/while-statement');
 const CallStatement = require('../ast/call-statement');
 const FunctionDeclaration = require('../ast/function-declaration');
 const BinaryExpression = require('../ast/binary-expression');
-const UnaryExpression = require('../ast/unary-expression');
+const PostfixExpression = require('../ast/postfix-expression');
+const PrefixExpression = require('../ast/prefix-expression');
 const IdentifierExpression = require('../ast/identifier-expression');
 const SubscriptedExpression = require('../ast/subscripted-expression');
 const Call = require('../ast/call');
@@ -90,8 +91,8 @@ const astGenerator = grammar.createSemantics().addOperation('ast', {
   Exp2_binary(left, op, right) { return new BinaryExpression(op.ast(), left.ast(), right.ast()); },
   Exp3_binary(left, op, right) { return new BinaryExpression(op.ast(), left.ast(), right.ast()); },
   Exp4_binary(id, op, operand) { return new BinaryExpression(id.ast(), op.ast(), operand.ast()); },
-  Exp5_unary(expression, e) { return new UnaryExpression(expression.ast(), e.ast()); },
-  Exp6_unary(e, expression) { return new UnaryExpression(expression.ast(), e.ast()); },
+  Exp5_postfix(expression, op) { return new PostfixExpression(expression.ast(), op.ast()); },
+  Exp6_prefix(op, expression) { return new PrefixExpression(op.ast(), expression.ast()); },
   Exp7_parens(_1, expression, _2) { return expression.ast(); },
   Call(callee, _1, args) { return new Call(callee.ast(), args.ast()); },
   VarDecl(t, v, _2, e) { return new VariableDeclaration(t.ast(), v.ast(), e.ast()); },
