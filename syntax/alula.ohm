@@ -12,7 +12,7 @@ alüla {
   SimpleStmt  =  VarDecl
               |  Call                             -- call
               |  VarExps (":"| assignop) Exps     -- assign
-              |  "print:" Exp                    -- print
+              |  "print:" Exp                     -- print
               |  "break"                          -- break
               |  "return:" Exp?                   -- return
               |	 Exp
@@ -60,7 +60,7 @@ alüla {
   StructBindings = ListOf<Binding, ",">
 
   Exps        = NonemptyListOf<Exp, ",">
-              | "(" Exps ")"  -- parens
+              | "(" Exps ")"                      -- parens
   Ids         =  NonemptyListOf<id, ",">
   VarDecl	    =	 Type id ":" Exp
   VarExp      =  VarExp "[" Exp "]"               -- subscripted
