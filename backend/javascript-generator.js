@@ -28,6 +28,7 @@ const Case = require('../ast/case');
 const WhileStatement = require('../ast/while-statement');
 const CallStatement = require('../ast/call-statement');
 const FunctionDeclaration = require('../ast/function-declaration');
+const FunctionObject = require('../ast/function-object');
 const BinaryExpression = require('../ast/binary-expression');
 const PostfixExpression = require('../ast/postfix-expression');
 const PrefixExpression = require('../ast/prefix-expression');
@@ -84,7 +85,7 @@ function generateLibraryFunctions() {
   }
   return [
     generateLibraryStub('print', '_', 'console.log(_);'),
-    generateLibraryStub('sqrt', '_', 'return Math.sqrt(_);'),
+    // generateLibraryStub('sqrt', '_', 'return Math.sqrt(_);'),
   ].join('');
 }
 
@@ -118,6 +119,7 @@ Object.assign(CallStatement.prototype, {
 
 Object.assign(Call.prototype, {
   gen() {
+    // console.log(this);
     const fun = this.callee.referent;
     const params = {};
     const args = Array(this.args.length).fill(undefined);
@@ -127,12 +129,13 @@ Object.assign(Call.prototype, {
   },
 });
 
-// Object.assign(FunctionDeclaration.prototype, {
-//   gen() { return this.function.gen(); },
-// });
-
 Object.assign(FunctionDeclaration.prototype, {
+  gen() { return this.function.gen(); },
+});
+
+Object.assign(FunctionObject.prototype, {
   gen() {
+    // console.log(this.function);
     return `function ${jsName(this)}(${this.params.map(p => p.gen()).join(', ')}) {
       ${this.body.map(s => s.gen()).join('')}
     }`;
