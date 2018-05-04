@@ -1,10 +1,6 @@
 # alüla
 
-<<<<<<< HEAD
-![alüla logo](/docs/alüla.png)
-=======
-![alüla logo](alula.png)
->>>>>>> 33591c5e6646b96bbb9741642a4242196c52ec94
+![alüla logo](/docs/alula.png)
 
 Welcome to alüla, the language that does away with the semicolon, but embraces the colon. alüla is a static, strongly typed programming languages that focuses on parallelism and simplicity through the standardized use of the colon. alüla takes inspiration from Python, with hints of Elm.
 
