@@ -60,7 +60,7 @@
           <div class="col-xl-9 mx-auto">
             <h1 class="mb-5">alüla</h1>
             <h2 class="align-text-bottom">The Programming Language</h2>
-            <a class="btn btn-lg font-weight-bold btn-primary btn-outline-danger" href="https://github.com/johns/alüla" role="button">alüla Repository</a>
+            <a class="btn btn-lg font-weight-bold btn-primary btn-outline-danger" href="https://github.com/johns/alula" role="button">alüla Repository</a>
            </div>
         </div>
       </div>
@@ -87,21 +87,21 @@
             <br>
             <h5> General </h5>
             <ul class="lead">
-            	<li>All variable declarations, function calls, and and conditional statements require a colon to designate the beginning
-							<li>Any arguments are separated with a comma directly after the colon
-							<li>Chained functions are separated by ->, designated another "step"
-							<li>Parenthesis are exclusively used for logic and arithmetic precedence
-							<li>Parameters for functions occur after the colon, but before the curly brackets. Multiple parameters are separated with commas
+            <li> All variable declarations and statements require a colon to designate the beginning
+            <li> Parameters for functions occur after the colon, but before the curly brackets. Multiple parameters are separated with commas
+            <li> Chained functions are separated by ->, to designate another "step"
+            <li> Double parentheses are exclusively used for logic and arithmetic precedence
+            <li> Functions are called with any arguments directed into the function <-
             </ul>
             <h5> Types </h5>
             <ul class="lead">
-            	<li>num numberVariable: 2
- 							<li>bool booleanVariable: false
-							<li>string stringVariable: "This is text."
-							<li>list listOfVariables&lt;type>: ["List", "of", "four", "variables"]
-							<li>dict dictionaryOfVariables: {John: "Scott", J: 4, Olive: true}
-							<li>struct aStructure: {...}
-							<li>undefined
+              <li> num graduationYear: 2019
+              <li> bool operatingSystemsIsFun: true
+              <li> string favoriteInstructor: "Forns"
+              <li> list[string] hobbies: ["Skiing", "Surfing", "Basketball"]
+              <li> dict{string, num} nicknames: {"John": 51, "J": 4, "Olive": 6}
+              <li> struct{num: age, string: breed} fluffy: {age: 5, breed: "Pitbull"}
+              <li> undefined
             </ul>
           </div>
         </div>
@@ -126,7 +126,7 @@ print: "Hello World"
 function average: num list {
   num multiplied: 1
   for: i:0, i < (list -> length), i++ {
-    multiplied *: list[i]
+    multiplied <li>: list[i]
   }
   return multiplied / (list -> length)
 }
@@ -167,7 +167,7 @@ function oddOrEven: num number {
 function closure: num x, num y {
   currentX: x
   return: function next: {
-    currentX: currentX * y
+    currentX: currentX <li> y
     return: currentX
   }
 }
@@ -182,7 +182,7 @@ closureVariable -> next
     </section>
 
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
+    <footer class="py-5 bg-light">
       <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; alüla 2018</p>
       </div>

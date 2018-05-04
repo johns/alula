@@ -6,12 +6,27 @@ Welcome to alüla, the language that does away with the semicolon, but embraces 
 
 In many programming languages, the equal sign has many contextual uses. For example, in JavaScript, a single equal sign (=) is used to declare, while a double or triple equal sign (==/===) is for comparing. The overuse of such a character can cause unnecessary confusion. In alüla, the equal sign is utilized, but only for the comparison of values. All declarations, statements, and function calls begin with a colon, allowing for an easier understanding for those unfamiliar with the language. In Layman's terms, anything that can be called to do something begins with a colon.
 
+### Setup
+Clone the repository. Assumung you have Node.js, run the following command within the alula directory:
+> npm install
+
+alüla compiles to JavaScript. To run your alüla program with our generator, run your program with and pipe it back to node with the following command:
+> node alula.js [RELATIVE FILE PATH] | node
+
+The following parameters are also supported by alula.js:   
+**-a**: Prints the program's Abstract Syntax Tree   
+**-i**: Prints the decorated AST then stops   
+**-o**: Optimizes the intermediate code before generating target JavaScript.   
+
+Do not pipe the program into node if using these parameters.
+
+
 ### Features
-* All variable declarations, function calls, and and conditional statements require a colon to designate the beginning
-* Any arguments are separated with a comma directly after the colon
-* Chained functions are separated by ->, designated another "step"
-* Parenthesis are exclusively used for logic and arithmetic precedence
+* All variable declarations and statements require a colon to designate the beginning
 * Parameters for functions occur after the colon, but before the curly brackets. Multiple parameters are separated with commas
+* Chained functions are separated by ->, to designate another "step"
+* Double parentheses are exclusively used for logic and arithmetic precedence
+* Functions are called with any arguments directed into the function <-
 
 | alüla                     | JavaScript         | Description   |
 | ------------------------- |:----------------:| ---------:|
@@ -21,8 +36,8 @@ In many programming languages, the equal sign has many contextual uses. For exam
 | while: conditional {...}| while(conditional) {...} | while-loop |
 | for: num i:0, i < max, i++ {...} | for (var i = 0; i < max; i++) {...} | for-loop |
 | return: 0 | return 0; | return statement |
-| variable -> getValue: 12 -> getMax -> toString | variable.getValueAt(12).getMax().toString() | Chain-able Functions
-| num answer: sum: 5, 3 | let answer = sum(5,3) | Function Call
+| variable -> ``(getValue <- 12)`` -> getMax -> toString | variable.getValueAt(12).getMax().toString() | Chainable Functions
+| sum <- 5, 3 | sum(5,3) | Function Call
 | # single line comment | // single line comment | Single line comment |
 | #: block comment :# | /\* block comment */ | Multiple line comment |
 
