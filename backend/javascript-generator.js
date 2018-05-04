@@ -80,8 +80,8 @@ function generateLibraryFunctions() {
     return `function ${jsName(entity)}(${params}) {${body}}`;
   }
   return [
-    generateLibraryStub('print', '_', 'console.log(_);'),
-    generateLibraryStub('sqrt', '_', 'return Math.sqrt(_);'),
+    generateLibraryStub('print:', '_', 'console.log(_);'),
+    generateLibraryStub('sqrt:', '_', 'return Math.sqrt(_);'),
   ].join('');
 }
 
@@ -124,11 +124,11 @@ Object.assign(Call.prototype, {
   },
 });
 
-Object.assign(FunctionDeclaration.prototype, {
-  gen() { return this.function.gen(); },
-});
+// Object.assign(FunctionDeclaration.prototype, {
+//   gen() { return this.function.gen(); },
+// });
 
-Object.assign(FunctionObject.prototype, {
+Object.assign(FunctionDeclaration.prototype, {
   gen() {
     return `function ${jsName(this)}(${this.params.map(p => p.gen()).join(', ')}) {
       ${this.body.map(s => s.gen()).join('')}
@@ -151,7 +151,7 @@ Object.assign(IfStatement.prototype, {
   },
 });
 
-Object.assign(ListExpression.prototype, {
+Object.assign(ListLiteral.prototype, {
   gen() {
     const jsMembers = this.members.map(member => member.gen());
     return `[${jsMembers.join(', ')}]`;
@@ -199,9 +199,9 @@ Object.assign(SubscriptedExpression.prototype, {
   },
 });
 
-Object.assign(UnaryExpression.prototype, {
-  gen() { return `(${makeOp(this.op)} ${this.operand.gen()})`; },
-});
+// Object.assign(UnaryExpression.prototype, {
+//   gen() { return `(${makeOp(this.op)} ${this.operand.gen()})`; },
+// });
 
 Object.assign(VariableDeclaration.prototype, {
   gen() {
@@ -211,9 +211,9 @@ Object.assign(VariableDeclaration.prototype, {
   },
 });
 
-Object.assign(Variable.prototype, {
-  gen() { return jsName(this); },
-});
+// Object.assign(Variable.prototype, {
+//   gen() { return jsName(this); },
+// });
 
 Object.assign(WhileStatement.prototype, {
   gen() {
