@@ -21,7 +21,7 @@ module.exports = (source) => {
   const linePattern = /( *)([^\n]*\n)/g;
   const commentPattern = /(#:(.|\s)*?:#)|(#(.)*)/gm;
 
-  text = text.replace(commentPattern, "");
+  text = text.replace(commentPattern, '');
   text = text.trimLeft();
 
   for (let match = linePattern.exec(text); match !== null; match = linePattern.exec(text)) {

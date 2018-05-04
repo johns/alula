@@ -1,4 +1,3 @@
-const util = require('util');
 const Variable = require('./variable');
 
 // A VariableDeclaration declares one or more variables. The variable objects
@@ -17,7 +16,7 @@ module.exports = class VariableDeclaration {
     if (this.ids.length !== this.initializers.length) {
       throw new Error('Number of variables does not equal number of initializers');
     }
-    
+
 
     // We don't want the declared variables to come into scope until after the
     // declaration line, so we will analyze all the initializing expressions

@@ -7,7 +7,7 @@ Welcome to alüla, the language that does away with the semicolon, but embraces 
 In many programming languages, the equal sign has many contextual uses. For example, in JavaScript, a single equal sign (=) is used to declare, while a double or triple equal sign (==/===) is for comparing. The overuse of such a character can cause unnecessary confusion. In alüla, the equal sign is utilized, but only for the comparison of values. All declarations, statements, and function calls begin with a colon, allowing for an easier understanding for those unfamiliar with the language. In Layman's terms, anything that can be called to do something begins with a colon.
 
 ### Setup
-Clone the repository. Assumung you have Node.js, run the following command within the alula directory:
+Clone the repository. Assuming you have Node.js, run the following command within the alula directory:
 > npm install
 
 alüla compiles to JavaScript. To run your alüla program with our generator, run your program with and pipe it back to node with the following command:

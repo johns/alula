@@ -1,13 +1,13 @@
 module.exports = class DictLiteral {
-    constructor(elements) {
-        this.elements = elements;
-    }
+  constructor(elements) {
+    this.elements = elements;
+  }
 
-    analyze(context) {
-        this.elements.forEach(e => e.analyze(context));
-    }
+  analyze(context) {
+    this.elements.forEach(e => e.analyze(context));
+  }
 
-    toString() {
-        return `[${this.elements.toString()}]`;
-    }
+  toString() {
+    return `[${this.elements.toString()}]`;
+  }
 };

@@ -12,7 +12,9 @@ module.exports = class ForStatement {
     if (Array.isArray(test) && test.length > 0 && Array.isArray(test[0])) {
       test = test[0];
     }
-    Object.assign(this, { decl, test, assign, body});
+    Object.assign(this, {
+      decl, test, assign, body,
+    });
   }
 
   analyze(context) {

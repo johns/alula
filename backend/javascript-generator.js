@@ -14,7 +14,6 @@
 const prettyJs = require('pretty-js');
 
 const Context = require('../semantics/context');
-const fs = require('fs');
 
 const Program = require('../ast/program');
 const VariableDeclaration = require('../ast/variable-declaration');
@@ -23,16 +22,12 @@ const AssignmentStatement = require('../ast/assignment-statement');
 const PrintStatement = require('../ast/print-statement');
 const BreakStatement = require('../ast/break-statement');
 const ReturnStatement = require('../ast/return-statement');
-const ForStatement = require('../ast/for-statement');
 const IfStatement = require('../ast/if-statement');
-const Case = require('../ast/case');
 const WhileStatement = require('../ast/while-statement');
 const CallStatement = require('../ast/call-statement');
 const FunctionDeclaration = require('../ast/function-declaration');
 const FunctionObject = require('../ast/function-object');
 const BinaryExpression = require('../ast/binary-expression');
-const PostfixExpression = require('../ast/postfix-expression');
-const PrefixExpression = require('../ast/prefix-expression');
 const IdentifierExpression = require('../ast/identifier-expression');
 const SubscriptedExpression = require('../ast/subscripted-expression');
 const Call = require('../ast/call');
@@ -42,14 +37,12 @@ const BooleanLiteral = require('../ast/boolean-literal');
 const NumericLiteral = require('../ast/numeric-literal');
 const StringLiteral = require('../ast/string-literal');
 const ListLiteral = require('../ast/list-literal');
-const DictLiteral = require('../ast/dict-literal');
-const StructLiteral = require('../ast/struct-literal');
-const { Type, DictType, ListType } = require('../ast/type');
-const Pair = require('../ast/pair');
 
 
 function makeOp(op) {
-  return { not: '!', and: '&&', or: '||', '==': '===', '!=': '!==' }[op] || op;
+  return {
+    not: '!', and: '&&', or: '||', '==': '===', '!=': '!==',
+  }[op] || op;
 }
 
 // jsName(e) takes any alula object with an id property, such as a
