@@ -1,7 +1,6 @@
+# Commented out so we can move ahead to the generator
 #:
-
 if: true {
   print: "Hi"
 }
-
 :#

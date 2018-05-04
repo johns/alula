@@ -46,6 +46,7 @@ const { Type, DictType, ListType } = require('../ast/type');
 const Pair = require('../ast/pair');
 
 
+
 function makeOp(op) {
   return { not: '!', and: '&&', or: '||', '==': '===', '!=': '!==' }[op] || op;
 }
@@ -59,6 +60,9 @@ const jsName = (() => {
   let lastId = 0;
   const map = new Map();
   return (v) => {
+    // if (v === undefined) {
+    //   return;
+    // }
     if (!(map.has(v))) {
       map.set(v, ++lastId); // eslint-disable-line no-plusplus
     }
@@ -85,9 +89,9 @@ function generateLibraryFunctions() {
   ].join('');
 }
 
-Object.assign(Argument.prototype, {
-  gen() { return this.expression.gen(); },
-});
+// Object.assign(Argument.prototype, {
+//   gen() { return this.expression.gen(); },
+// });
 
 Object.assign(AssignmentStatement.prototype, {
   gen() {
@@ -209,6 +213,11 @@ Object.assign(VariableDeclaration.prototype, {
     const initializers = this.initializers.map(i => i.gen());
     return `let ${bracketIfNecessary(variables)} = ${bracketIfNecessary(initializers)};`;
   },
+});
+
+// Maybe?
+Object.assign(StringLiteral.prototype, {
+  gen() { return jsName(this); },
 });
 
 // Object.assign(Variable.prototype, {
