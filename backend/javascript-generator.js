@@ -18,6 +18,7 @@ const fs = require('fs');
 
 const Program = require('../ast/program');
 const VariableDeclaration = require('../ast/variable-declaration');
+const Variable = require('../ast/variable');
 const AssignmentStatement = require('../ast/assignment-statement');
 const PrintStatement = require('../ast/print-statement');
 const BreakStatement = require('../ast/break-statement');
@@ -47,7 +48,6 @@ const { Type, DictType, ListType } = require('../ast/type');
 const Pair = require('../ast/pair');
 
 
-
 function makeOp(op) {
   return { not: '!', and: '&&', or: '||', '==': '===', '!=': '!==' }[op] || op;
 }
@@ -62,9 +62,6 @@ const jsName = (() => {
   let lastId = 0;
   const map = new Map();
   return (v) => {
-    // if (v === undefined) {
-    //   return;
-    // }
     if (!(map.has(v))) {
       map.set(v, ++lastId); // eslint-disable-line no-plusplus
     }
@@ -93,9 +90,9 @@ function generateLibraryFunctions() {
   ].join('');
 }
 
-// Object.assign(Argument.prototype, {
-//   gen() { return this.expression.gen(); },
-// });
+Object.assign(Argument.prototype, {
+  gen() { return this.expression.gen(); },
+});
 
 Object.assign(AssignmentStatement.prototype, {
   gen() {
@@ -228,14 +225,9 @@ Object.assign(VariableDeclaration.prototype, {
   },
 });
 
-// Maybe?
-Object.assign(StringLiteral.prototype, {
+Object.assign(Variable.prototype, {
   gen() { return jsName(this); },
 });
-
-// Object.assign(Variable.prototype, {
-//   gen() { return jsName(this); },
-// });
 
 Object.assign(WhileStatement.prototype, {
   gen() {
