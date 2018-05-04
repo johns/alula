@@ -1,0 +1,9 @@
+- Update Documentation
+- Update Website Documentation
+- Fix website repo link
+- Add not supported errors to things that aren't supported
+- Change Pair -> Binding and Structpair -> StructBinding in Grammar
+- Type Checking
+- JS generator
+- 2 function errors in analyzer
+- get +:, -:, etc. to work properly (or remove it)
