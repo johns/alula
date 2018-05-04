@@ -51,11 +51,12 @@ function makeOp(op) {
   return { not: '!', and: '&&', or: '||', '==': '===', '!=': '!==' }[op] || op;
 }
 
-// jsName(e) takes any PlainScript object with an id property, such as a
+// jsName(e) takes any alula object with an id property, such as a
 // Variable, Parameter, or FunctionDeclaration, and produces a JavaScript
 // name by appending a unique indentifying suffix, such as '_1' or '_503'.
 // It uses a cache so it can return the same exact string each time it is
 // called with a particular entity.
+
 const jsName = (() => {
   let lastId = 0;
   const map = new Map();
@@ -66,6 +67,7 @@ const jsName = (() => {
     if (!(map.has(v))) {
       map.set(v, ++lastId); // eslint-disable-line no-plusplus
     }
+    // console.log(v);
     return `${v.id}_${map.get(v)}`;
   };
 })();
@@ -81,11 +83,12 @@ function bracketIfNecessary(a) {
 function generateLibraryFunctions() {
   function generateLibraryStub(name, params, body) {
     const entity = Context.INITIAL.declarations[name];
+    // console.log(entity);
     return `function ${jsName(entity)}(${params}) {${body}}`;
   }
   return [
-    generateLibraryStub('print:', '_', 'console.log(_);'),
-    generateLibraryStub('sqrt:', '_', 'return Math.sqrt(_);'),
+    generateLibraryStub('print', '_', 'console.log(_);'),
+    generateLibraryStub('sqrt', '_', 'return Math.sqrt(_);'),
   ].join('');
 }
 
@@ -178,9 +181,12 @@ Object.assign(Parameter.prototype, {
 
 Object.assign(Program.prototype, {
   gen() {
+    // console.log(this);
     const libraryFunctions = generateLibraryFunctions();
     const programStatements = this.statements.map(s => s.gen());
     const target = `${libraryFunctions}${programStatements.join('')}`;
+    // console.log(programStatements);
+    // console.log(target);
     return prettyJs(target, { indent: '  ' });
   },
 });
@@ -193,6 +199,10 @@ Object.assign(ReturnStatement.prototype, {
 
 Object.assign(StringLiteral.prototype, {
   gen() { return `${this.value}`; },
+});
+
+Object.assign(PrintStatement.prototype, {
+  gen() { return `console.log(${this.printValue.gen()});`; },
 });
 
 Object.assign(SubscriptedExpression.prototype, {
