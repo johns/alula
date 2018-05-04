@@ -36,7 +36,7 @@ Do not pipe the program into node if using these parameters.
 | while: conditional {...}| while(conditional) {...} | while-loop |
 | for: num i:0, i < max, i++ {...} | for (var i = 0; i < max; i++) {...} | for-loop |
 | return: 0 | return 0; | return statement |
-| variable -> ``(getValue <- 12)`` -> getMax -> toString | variable.getValueAt(12).getMax().toString() | Chainable Functions
+| variable -> (getValue &lt;- 12) -> getMax -> toString | variable.getValueAt(12).getMax().toString() | Chainable Functions
 | sum <- 5, 3 | sum(5,3) | Function Call
 | # single line comment | // single line comment | Single line comment |
 | #: block comment :# | /\* block comment */ | Multiple line comment |
