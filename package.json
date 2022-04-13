@@ -4,7 +4,7 @@
   "description": "The language that does away with the semicolon",
   "main": "alula.lul",
   "dependencies": {
-    "async": "^0.9.0",
+    "async": "^3.2.2",
     "byline": "^4.2.1",
     "deep-extend": "^0.6.0",
     "hoek": "^5.0.3",
